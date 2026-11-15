@@ -144,7 +144,7 @@
   // ─────────── liste des fiches ───────────
   async function chargerListe() {
     const versFiches = (noms) => noms.map(n => {
-      const s = String(n).replace(/\.drawio$/, '');
+      const s = n.endsWith('.drawio') ? n.slice(0, -7) : n;
       return { slug: s, nom: s };
     });
 
