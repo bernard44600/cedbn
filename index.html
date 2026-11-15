@@ -33,6 +33,11 @@
   .fiche .nom{flex:1;min-width:0;font-size:.72rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .fiche .plus{border:none;background:var(--accent);color:#fff;width:22px;height:22px;border-radius:5px;
     cursor:pointer;font-weight:700;line-height:1;flex:none}
+  .mini-btn{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;flex:none;
+    border-radius:5px;background:#eef2f5;color:#334155;text-decoration:none;font-size:.8rem;line-height:1}
+  .mini-btn:hover{background:#dfe6ec;color:#0f172a}
+  .legende{font-size:.72rem;color:var(--muted);margin:4px 2px 0}
+  .legende b{color:#334155}
   .fiche .plus:hover{background:var(--accent2)}
   .fiche.prise{outline:2px solid var(--accent);outline-offset:-2px}
   .fiche.prise .plus{background:#94a3b8}
@@ -117,6 +122,8 @@
 <main>
   <h2>Fiches disponibles <span id="compte"></span></h2>
   <div id="fiches"><p style="color:#6b7280">Chargement de la liste…</p></div>
+  <p class="legende"><b>⬇</b> télécharge le fichier <code>.drawio</code> · <b>✎</b> l'ouvre dans l'éditeur
+     diagrams.net (enregistrement : <b>Fichier → Enregistrer sous → Appareil</b>) · <b>+</b> l'ajoute à la planche</p>
 
   <h2>Planche A4 (8 fiches, 4 × 2)</h2>
   <div class="apercu">
@@ -276,9 +283,15 @@
     FICHES.forEach(f => {
       const el = document.createElement('div');
       el.className = 'fiche'; el.dataset.slug = f.slug;
+      const url = new URL(`drawio/${encodeURIComponent(f.slug)}.drawio`, location.href).href;
+      const edit = 'https://app.diagrams.net/?url=' + encodeURIComponent(url) +
+                   '&title=' + encodeURIComponent(f.slug + '.drawio') + '&nav=1&lang=fr';
       el.innerHTML = `<div class="vue"><span class="attente">…</span></div>
         <div class="pied"><span class="nom" title="${esc(f.nom)}">${esc(f.nom)}</span>
-        <button class="plus" title="Ajouter à la planche">+</button></div>`;
+          <a class="mini-btn" href="${esc(url)}" download title="Télécharger le fichier .drawio">⬇</a>
+          <a class="mini-btn" href="${esc(edit)}" target="_blank" rel="noopener"
+             title="Modifier dans diagrams.net (puis Fichier → Enregistrer sous → appareil)">✎</a>
+          <button class="plus" title="Ajouter à la planche">+</button></div>`;
       el.querySelector('.plus').onclick = (e) => { e.stopPropagation(); ajouter(f.slug); };
       el.querySelector('.vue').onclick = () => ouvrirApercu(f.slug, null);
       g.appendChild(el);
