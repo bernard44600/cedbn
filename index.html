@@ -197,7 +197,7 @@
   // petit pool : 3 rendus en parallèle (un seul à la fois était trop lent sur le site)
   const _attente = [];
   let _actifs = 0;
-  const PARALLELE = 3;
+  const PARALLELE = 1;   // >1 : le viewer drawio ne rend pas correctement en concurrence
   function enFile(slug, cible) {
     return new Promise((resolve, reject) => {
       _attente.push({ slug, cible, resolve, reject });
@@ -282,27 +282,18 @@
       el.querySelector('.plus').onclick = (e) => { e.stopPropagation(); ajouter(f.slug); };
       el.querySelector('.vue').onclick = () => ouvrirApercu(f.slug, null);
       g.appendChild(el);
-      observateur.observe(el);
+      // rendu immédiat, en file : la vignette se remplit dès que la fiche est prête
+      enFile(f.slug, el.querySelector('.vue')).then(() => {
+        const v = el.querySelector('.vue');
+        const att = v && v.querySelector('.attente');   // on retire l'indicateur, pas le SVG
+        if (att) att.remove();
+      }).catch(err => {
+        el.querySelector('.vue').innerHTML = '<span class="attente">⚠ illisible</span>';
+        console.warn('fiche', f.slug, err);
+      });
     });
     majEtatGalerie();
   }
-
-  // vignettes à la demande (23 fiches, dont certaines lourdes)
-  const observateur = new IntersectionObserver((entrees) => {
-    entrees.forEach(e => {
-      if (!e.isIntersecting) return;
-      const el = e.target;
-      observateur.unobserve(el);
-      const slug = el.dataset.slug;
-      enFile(slug, el.querySelector('.vue')).then(svg => {
-        el.querySelector('.vue').innerHTML = '';
-        el.querySelector('.vue').appendChild(svg);
-      }).catch(err => {
-        el.querySelector('.vue').innerHTML = '<span class="attente">⚠ illisible</span>';
-        console.warn('fiche', slug, err);
-      });
-    });
-  }, {rootMargin:'300px'});
 
   // ─────────── planche A4 ───────────
   function dessinerPlanche() {
