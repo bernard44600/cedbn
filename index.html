@@ -143,29 +143,38 @@
 
   // ─────────── liste des fiches ───────────
   async function chargerListe() {
-    // 1. manifeste généré au déploiement (drawio/index.json)
+    const versFiches = (noms) => noms.map(n => {
+      const s = String(n).replace(/\.drawio$/, '');
+      return { slug: s, nom: s };
+    });
+
+    // 1. liste vivante via l'API GitHub (le dépôt est public) : un fichier ajouté
+    //    au dossier drawio/ apparaît sans rien régénérer.
+    const m = location.hostname.match(/^([^.]+)\.github\.io$/);
+    if (m) {
+      const depot = location.pathname.split('/').filter(Boolean)[0];
+      if (depot) {
+        try {
+          const r = await fetch(`https://api.github.com/repos/${m[1]}/${depot}/contents/drawio`,
+                                {headers: {'Accept': 'application/vnd.github+json'}});
+          if (r.ok) {
+            const d = await r.json();
+            const noms = d.filter(f => f.name.endsWith('.drawio')).map(f => f.name);
+            if (noms.length) return versFiches(noms);
+          }
+        } catch (e) { /* repli ci-dessous */ }
+      }
+    }
+
+    // 2. repli : manifeste figé (hors ligne, ou API limitée)
     try {
       const r = await fetch('drawio/index.json', {cache:'no-cache'});
       if (r.ok) {
         const d = await r.json();
-        const noms = (Array.isArray(d) ? d : d.fichiers || []).map(x => typeof x === 'string' ? x : x.slug || x.nom);
-        if (noms.length) return noms.map(s => ({slug: String(s).replace(/\.drawio$/,''), nom: String(s).replace(/\.drawio$/,'')}));
+        const noms = (Array.isArray(d) ? d : d.fichiers || []);
+        if (noms.length) return versFiches(noms);
       }
-    } catch(e) { /* on tente la suite */ }
-
-    // 2. repli : API GitHub (dépôt public)
-    const m = location.hostname.match(/^([^.]+)\.github\.io$/);
-    if (m) {
-      const depot = location.pathname.split('/').filter(Boolean)[0];
-      try {
-        const r = await fetch(`https://api.github.com/repos/${m[1]}/${depot}/contents/drawio`);
-        if (r.ok) {
-          const d = await r.json();
-          return d.filter(f => f.name.endsWith('.drawio'))
-                  .map(f => ({slug: f.name.replace(/\.drawio$/,''), nom: f.name.replace(/\.drawio$/,'')}));
-        }
-      } catch(e) { /* ignore */ }
-    }
+    } catch (e) { /* ignore */ }
     return [];
   }
 
