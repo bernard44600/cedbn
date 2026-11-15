@@ -1,17 +1,17 @@
 <mxfile host="Electron">
   <diagram name="Page-1" id="J5p6Mt3v1SuXNy9PViS8">
-    <mxGraphModel dx="1627" dy="422" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="413" pageHeight="583" math="0" shadow="0">
+    <mxGraphModel dx="717" dy="-123" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="413" pageHeight="583" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="pnTIe0feLh82Tz_ozwUF-97" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Tahoma;" value="&lt;div align=&quot;left&quot;&gt;&lt;font style=&quot;font-size: 24px;&quot;&gt;leurs méthodes ?&lt;/font&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Comment réagir ?&lt;/div&gt;" vertex="1">
-          <mxGeometry height="70" width="313.5" x="56.5" y="590" as="geometry" />
+          <mxGeometry height="70" width="313.5" x="56.5" y="630" as="geometry" />
         </mxCell>
         <mxCell id="pnTIe0feLh82Tz_ozwUF-98" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=12;fontFamily=Helvetica;" value="&lt;blockquote class=&quot;wp-block-quote is-layout-flow wp-block-quote-is-layout-flow&quot;&gt;&lt;br&gt;&lt;p class=&quot;wp-block-paragraph&quot;&gt;&lt;em&gt;Il faut absolument arrêter de rebondir systématiquement sur les bêtises et les outrances que vous voyez passer.&amp;nbsp;&lt;br&gt;&lt;br&gt;C’est un exercice difficile mais indispensable.&lt;/em&gt;&lt;/p&gt;&lt;br&gt;&lt;/blockquote&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="70" width="374.67" x="15.329999999999984" y="700" as="geometry" />
+          <mxGeometry height="70" width="374.67" x="15.329999999999984" y="740" as="geometry" />
         </mxCell>
         <mxCell id="pnTIe0feLh82Tz_ozwUF-99" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=12;fontFamily=Helvetica;" value="&lt;blockquote class=&quot;wp-block-quote is-layout-flow wp-block-quote-is-layout-flow&quot;&gt;&lt;br&gt;&lt;p class=&quot;wp-block-paragraph&quot;&gt;&lt;em&gt;L’extrême droite fonctionne avec une tactique éprouvée par Trump et consorts. Raconter des mensonges et balancer des fake news chaque jour en attirant, monopolisant et en détournant l’attention.&amp;nbsp;&lt;br&gt;&lt;br&gt;C’est aussi une façon de monopoliser le débat. L’extrême droite ment, sort une fake news ou une phrase raciste, misogyne… les médias (et la gauche !) rebondissent sur les bêtises et fake news et on débat ensuite de ces petites phrases, au lieu de parler des transformations nécessaires de notre société, notre économie, de notre système de santé, d’éducation, de changement climatique, etc.&lt;/em&gt;&lt;/p&gt;&lt;p class=&quot;wp-block-paragraph&quot;&gt;&lt;em&gt;&lt;br&gt;&lt;/em&gt;&lt;/p&gt;&lt;p class=&quot;wp-block-paragraph&quot;&gt;&lt;em&gt;&lt;br&gt;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;" vertex="1">
-          <mxGeometry height="240" width="370" x="10" y="770" as="geometry" />
+          <mxGeometry height="240" width="370" x="10" y="810" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

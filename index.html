@@ -91,12 +91,14 @@
   /* ── impression : seulement la planche ── */
   @page{size:A4 landscape;margin:0}
   @media print{
-    body{background:#fff}
-    header,main > h2,#fiches,.apercu .barre,#modale,#notif,#info-bulle{display:none !important}
-    main{padding:0;max-width:none}
-    .apercu{border:none;padding:0;background:#fff;overflow:visible}
-    .apercu .cadre{transform:none !important;width:auto;height:auto}
-    #page{box-shadow:none;width:297mm;height:210mm}
+    html,body{margin:0;padding:0;background:#fff;width:297mm;height:210mm;overflow:hidden}
+    /* tout ce qui n'est pas la planche disparaît (légendes, titres, galerie, bulles) */
+    header, main > *:not(.apercu), #modale, #notif, #info-bulle{display:none !important}
+    main{padding:0;margin:0;max-width:none}
+    /* l'aperçu écran a une hauteur calculée en JS : on la neutralise */
+    .apercu{padding:0;border:none;background:#fff;overflow:visible;height:auto !important}
+    .apercu .cadre{transform:none !important;width:auto !important;height:auto !important}
+    #page{width:297mm;height:210mm;box-shadow:none;page-break-inside:avoid;break-inside:avoid}
     .case{border:none}
     .case.vide{background:#fff}
     .case.vide::after,.case .num,.case .retirer,.case .remplacer{display:none !important}

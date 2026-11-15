@@ -1,14 +1,17 @@
 <mxfile host="Electron">
   <diagram name="Page-1" id="J5p6Mt3v1SuXNy9PViS8">
-    <mxGraphModel dx="1627" dy="1005" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="413" pageHeight="583" math="0" shadow="0">
+    <mxGraphModel dx="957" dy="793" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="413" pageHeight="583" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="pnTIe0feLh82Tz_ozwUF-85" parent="1" style="text;whiteSpace=wrap;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" value="- ce qui tient notre démocratie , et nous protège des dictateurs:&lt;br&gt;&amp;nbsp; &amp;nbsp; - justice indépendante&lt;br&gt;&amp;nbsp; &amp;nbsp; - corps intermédiaires&lt;br&gt;&amp;nbsp; &amp;nbsp; - liberté de la presse&lt;br&gt;&amp;nbsp; &amp;nbsp; - associations et syndicats" vertex="1">
-          <mxGeometry height="100" width="340" x="43" y="349.99999999999983" as="geometry" />
+          <mxGeometry height="100" width="340" x="36.83" y="459.99999999999983" as="geometry" />
         </mxCell>
         <mxCell id="pnTIe0feLh82Tz_ozwUF-86" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;perimeter=cloudPerimeter;fillColor=#fff2cc;strokeColor=#d6b656;opacity=50;opacityGroup=1;shadow=1;fontSize=24;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;rotation=-5;fontStyle=1;gradientColor=#ffd966;" value="Le RN est la victime&amp;nbsp;&lt;br&gt;des juges et des syndicats" vertex="1">
-          <mxGeometry height="100" width="387.66" x="13.000205468505897" y="50.00313252136567" as="geometry" />
+          <mxGeometry height="100" width="387.66" x="13.000205468505897" y="26.00313252136567" as="geometry" />
+        </mxCell>
+        <mxCell id="rRjQ3ti4Slioc4m77Gz9-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;" value="Le RN remet en cause les fondamentaux de la liberté&lt;div&gt;&lt;br&gt;- la presse indépendante&lt;div&gt;- les associations et syndicats&lt;/div&gt;&lt;div&gt;- la culture&lt;br&gt;&lt;div&gt;- la justice&lt;/div&gt;&lt;div&gt;- les droits soiaux des plus faibles&lt;/div&gt;&lt;div&gt;- l&#39;ensemble des pratiques religieuse et la laicité&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Est dangereux pour chacun d&#39;entre nous&lt;br&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="297" x="50" y="200" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
