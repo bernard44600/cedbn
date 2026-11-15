@@ -1,0 +1,67 @@
+<mxfile host="Electron">
+  <diagram name="Page-1" id="J5p6Mt3v1SuXNy9PViS8">
+    <mxGraphModel dx="1094" dy="753" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="504.25" width="362.33" x="120.01283279389713" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;Votes du RN :&lt;/b&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="300" x="121.01283279389713" y="261.12" as="geometry" />
+        </mxCell>
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-3" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;" value="Taxer de 2% les milliardaires (loi Zucman)" vertex="1">
+          <mxGeometry height="30" width="250" x="121.01283279389713" y="301.12" as="geometry" />
+        </mxCell>
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-4" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;" value="Augmenter le SMIC" vertex="1">
+          <mxGeometry height="30" width="250" x="121.01283279389713" y="341.12" as="geometry" />
+        </mxCell>
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-5" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;" value="Interdire le glyphosate (pesticides cancérigènes)" vertex="1">
+          <mxGeometry height="30" width="250" x="121.01283279389713" y="381.12" as="geometry" />
+        </mxCell>
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-6" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;" value="Rétablir l&#39;impôt sur la fortune" vertex="1">
+          <mxGeometry height="30" width="250" x="121.01283279389713" y="421.12" as="geometry" />
+        </mxCell>
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-7" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;" value="Former les magistrats aux violences intrafamiliales" vertex="1">
+          <mxGeometry height="30" width="250" x="121.01283279389713" y="461.12" as="geometry" />
+        </mxCell>
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-8" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;" value="Taxer les jets privés et les yachts" vertex="1">
+          <mxGeometry height="30" width="250" x="121.01283279389713" y="501.12" as="geometry" />
+        </mxCell>
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-9" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;" value="Bloquer les prix des produits de première nécessité" vertex="1">
+          <mxGeometry height="30" width="250" x="121.01283279389713" y="541.12" as="geometry" />
+        </mxCell>
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-10" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;" value="Abroger la réforme des retraites" vertex="1">
+          <mxGeometry height="30" width="250" x="121.01283279389713" y="581.12" as="geometry" />
+        </mxCell>
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-11" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;perimeter=cloudPerimeter;fillColor=#fff2cc;strokeColor=#d6b656;opacity=50;opacityGroup=1;shadow=1;fontSize=24;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;rotation=-5;fontStyle=1;gradientColor=#ffd966;" value="&lt;span&gt;Le RN au moins&amp;nbsp;&lt;br&gt;s’intéresse à nous ?&lt;/span&gt;" vertex="1">
+          <mxGeometry height="100" width="360" x="113.6728327938971" y="156.87" as="geometry" />
+        </mxCell>
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#b85450;rotation=-15;textShadow=1;labelBorderColor=none;" value="&lt;b&gt;CONTRE&lt;/b&gt;" vertex="1">
+          <mxGeometry height="26" width="90" x="381.01283279389713" y="301.12" as="geometry" />
+        </mxCell>
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#b85450;rotation=-15;textShadow=1;labelBorderColor=none;" value="&lt;b&gt;CONTRE&lt;/b&gt;" vertex="1">
+          <mxGeometry height="26" width="90" x="381.01283279389713" y="340.12" as="geometry" />
+        </mxCell>
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#b85450;rotation=-15;textShadow=1;labelBorderColor=none;" value="&lt;b&gt;CONTRE&lt;/b&gt;" vertex="1">
+          <mxGeometry height="26" width="90" x="381.01283279389713" y="379.12" as="geometry" />
+        </mxCell>
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#b85450;rotation=-15;textShadow=1;labelBorderColor=none;" value="&lt;b&gt;CONTRE&lt;/b&gt;" vertex="1">
+          <mxGeometry height="26" width="90" x="381.01283279389713" y="418.12" as="geometry" />
+        </mxCell>
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#b85450;rotation=-15;textShadow=1;labelBorderColor=none;" value="&lt;b&gt;CONTRE&lt;/b&gt;" vertex="1">
+          <mxGeometry height="26" width="90" x="381.01283279389713" y="458.12" as="geometry" />
+        </mxCell>
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#b85450;rotation=-15;textShadow=1;labelBorderColor=none;" value="&lt;b&gt;CONTRE&lt;/b&gt;" vertex="1">
+          <mxGeometry height="26" width="90" x="381.01283279389713" y="497.12" as="geometry" />
+        </mxCell>
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#b85450;rotation=-15;textShadow=1;labelBorderColor=none;" value="&lt;b&gt;CONTRE&lt;/b&gt;" vertex="1">
+          <mxGeometry height="26" width="90" x="381.01283279389713" y="536.12" as="geometry" />
+        </mxCell>
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#b85450;rotation=-15;textShadow=1;labelBorderColor=none;" value="&lt;b&gt;CONTRE&lt;/b&gt;" vertex="1">
+          <mxGeometry height="26" width="90" x="381.01283279389713" y="575.12" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

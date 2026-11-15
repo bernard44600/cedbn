@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiches — composition A4</title>
+<script src="https://viewer.diagrams.net/js/viewer-static.min.js" defer></script>
+<style>
+  :root{
+    --bg:#f4f6f8; --card:#fff; --ink:#1f2933; --muted:#6b7280; --line:#dde3e8;
+    --accent:#2f7d4f; --accent2:#1d5c39; --warn:#b45309;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15px}
+  header{background:var(--accent);color:#fff;padding:10px 14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  header h1{margin:0;font-size:1.05rem;font-weight:700;flex:1 1 200px}
+  header .actus{display:flex;gap:6px;flex-wrap:wrap}
+  header button{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.55);color:#fff;
+    padding:6px 10px;border-radius:6px;font-size:.85rem;cursor:pointer}
+  header button:hover{background:rgba(255,255,255,.32)}
+  header button.plein{background:#fff;color:var(--accent2);border-color:#fff;font-weight:700}
+  main{padding:10px;max-width:1400px;margin:0 auto}
+  h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:12px 2px 6px}
+
+  /* ── galerie des fiches ── */
+  #fiches{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:8px}
+  .fiche{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;
+         display:flex;flex-direction:column;position:relative}
+  .fiche .vue{aspect-ratio:210/297;background:#fbfcfd;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:zoom-in}
+  .fiche .vue svg{width:100%;height:100%}
+  .fiche .vue .attente{font-size:.7rem;color:#b9c2c9}
+  .fiche .pied{display:flex;align-items:center;gap:4px;padding:4px 6px;border-top:1px solid var(--line)}
+  .fiche .nom{flex:1;min-width:0;font-size:.72rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .fiche .plus{border:none;background:var(--accent);color:#fff;width:22px;height:22px;border-radius:5px;
+    cursor:pointer;font-weight:700;line-height:1;flex:none}
+  .fiche .plus:hover{background:var(--accent2)}
+  .fiche.prise{outline:2px solid var(--accent);outline-offset:-2px}
+  .fiche.prise .plus{background:#94a3b8}
+
+  /* ── planche A4 ── */
+  .apercu{background:#e7ebef;border:1px solid var(--line);border-radius:8px;padding:8px;overflow:hidden}
+  .apercu .cadre{transform-origin:top left}
+  #page{width:297mm;height:210mm;background:#fff;display:grid;grid-template-columns:repeat(4,1fr);
+        grid-template-rows:repeat(2,1fr);box-shadow:0 2px 10px rgba(0,0,0,.12)}
+  .case{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;
+        border:.1mm solid #e3e7ea;cursor:pointer;background:#fff}
+  .case svg{width:100%;height:100%;display:block}
+  .case.vide{background:repeating-linear-gradient(45deg,#fafbfc,#fafbfc 8px,#f2f5f7 8px,#f2f5f7 16px);color:#aab4bd}
+  .case.vide::after{content:"+";font-size:28px;font-weight:300}
+  .case .num{position:absolute;left:2px;top:1px;font-size:9px;color:#b9c2c9;background:rgba(255,255,255,.75);padding:0 3px;border-radius:3px}
+  .case .retirer{position:absolute;right:2px;top:2px;border:none;background:rgba(0,0,0,.45);color:#fff;
+    width:18px;height:18px;border-radius:4px;font-size:11px;line-height:1;cursor:pointer;opacity:0;transition:opacity .12s}
+  .case:hover .retirer{opacity:1}
+  .case .remplacer{position:absolute;left:2px;bottom:2px;border:none;background:rgba(0,0,0,.45);color:#fff;
+    padding:1px 5px;border-radius:4px;font-size:10px;cursor:pointer;opacity:0;transition:opacity .12s}
+  .case:hover .remplacer{opacity:1}
+
+  /* ── sélecteur (modale) ── */
+  #modale{position:fixed;inset:0;background:rgba(15,23,32,.55);display:none;z-index:50;padding:12px}
+  #modale.on{display:flex;align-items:center;justify-content:center}
+  #modale .boite{background:#fff;border-radius:10px;max-width:860px;width:100%;max-height:90vh;display:flex;flex-direction:column;overflow:hidden}
+  #modale .tete{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line)}
+  #modale .tete strong{flex:1;font-size:.9rem}
+  #modale .tete button{border:none;background:#eef2f5;border-radius:6px;padding:4px 9px;cursor:pointer}
+  #modale .corps{padding:10px;overflow:auto}
+  #modale .corps .grand{display:flex;align-items:center;justify-content:center;background:#fbfcfd;border:1px solid var(--line);border-radius:6px;min-height:220px}
+  #modale .corps .grand svg{max-width:100%;max-height:70vh}
+  #modale .liste{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:6px;margin-top:8px}
+  #modale .liste button{border:1px solid var(--line);background:#fff;border-radius:6px;padding:6px 4px;font-size:.7rem;
+    cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #modale .liste button:hover{border-color:var(--accent);color:var(--accent2)}
+
+  #notif{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);background:#1f2933;color:#fff;
+    padding:8px 14px;border-radius:6px;font-size:.82rem;opacity:0;pointer-events:none;transition:opacity .25s;z-index:90;max-width:92vw;text-align:center}
+  #notif.on{opacity:1}
+
+  /* ── impression : seulement la planche ── */
+  @page{size:A4 landscape;margin:0}
+  @media print{
+    body{background:#fff}
+    header,main > h2,#fiches,.apercu .barre,#modale,#notif{display:none !important}
+    main{padding:0;max-width:none}
+    .apercu{border:none;padding:0;background:#fff;overflow:visible}
+    .apercu .cadre{transform:none !important;width:auto;height:auto}
+    #page{box-shadow:none;width:297mm;height:210mm}
+    .case{border:none}
+    .case.vide{background:#fff}
+    .case.vide::after,.case .num,.case .retirer,.case .remplacer{display:none !important}
+  }
+  @media (max-width:640px){
+    #fiches{grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:6px}
+    header h1{font-size:.95rem}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🗂️ Fiches — composition A4</h1>
+  <div class="actus">
+    <button id="btn-vider">Vider la planche</button>
+    <button id="btn-lien">Lien de cette sélection</button>
+    <button id="btn-imprimer" class="plein">🖨️ Imprimer / PDF</button>
+  </div>
+</header>
+
+<main>
+  <h2>Fiches disponibles <span id="compte"></span></h2>
+  <div id="fiches"><p style="color:#6b7280">Chargement de la liste…</p></div>
+
+  <h2>Planche A4 (8 fiches, 4 × 2)</h2>
+  <div class="apercu">
+    <div class="cadre"><div id="page"></div></div>
+  </div>
+</main>
+
+<div id="modale"><div class="boite">
+  <div class="tete"><strong id="modale-titre">Choisir une fiche</strong>
+    <button id="modale-fermer">Fermer</button></div>
+  <div class="corps">
+    <div class="grand" id="modale-apercu"><span style="color:#9aa5ae;font-size:.85rem">Sélectionnez une fiche…</span></div>
+    <div class="liste" id="modale-liste"></div>
+  </div>
+</div></div>
+
+<div id="notif"></div>
+
+<script>
+(function(){
+  'use strict';
+
+  const NB_CASES = 8;
+  let FICHES = [];                 // [{slug, nom}]
+  const SVG_CACHE = new Map();     // slug -> <svg> (clone)
+  const XML_CACHE = new Map();     // slug -> xml
+  const CHOIX = new Array(NB_CASES).fill(null);
+  let caseCourante = null;         // index de la case en cours de choix
+
+  const $ = (s) => document.querySelector(s);
+  const notif = (m) => { const n=$('#notif'); n.textContent=m; n.className='on'; clearTimeout(n._t);
+                         n._t=setTimeout(()=>n.className='',2600); };
+  const esc = (s)=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+  // ─────────── liste des fiches ───────────
+  async function chargerListe() {
+    // 1. manifeste généré au déploiement (drawio/index.json)
+    try {
+      const r = await fetch('drawio/index.json', {cache:'no-cache'});
+      if (r.ok) {
+        const d = await r.json();
+        const noms = (Array.isArray(d) ? d : d.fichiers || []).map(x => typeof x === 'string' ? x : x.slug || x.nom);
+        if (noms.length) return noms.map(s => ({slug: String(s).replace(/\.drawio$/,''), nom: String(s).replace(/\.drawio$/,'')}));
+      }
+    } catch(e) { /* on tente la suite */ }
+
+    // 2. repli : API GitHub (dépôt public)
+    const m = location.hostname.match(/^([^.]+)\.github\.io$/);
+    if (m) {
+      const depot = location.pathname.split('/').filter(Boolean)[0];
+      try {
+        const r = await fetch(`https://api.github.com/repos/${m[1]}/${depot}/contents/drawio`);
+        if (r.ok) {
+          const d = await r.json();
+          return d.filter(f => f.name.endsWith('.drawio'))
+                  .map(f => ({slug: f.name.replace(/\.drawio$/,''), nom: f.name.replace(/\.drawio$/,'')}));
+        }
+      } catch(e) { /* ignore */ }
+    }
+    return [];
+  }
+
+  // ─────────── rendu d'une fiche via le viewer drawio ───────────
+  let _file = Promise.resolve();
+  function enFile(slug, cible) {
+    const suite = _file.then(() => rendre(slug, cible), () => rendre(slug, cible));
+    _file = suite.catch(() => {});
+    return suite;
+  }
+
+  async function xmlDe(slug) {
+    if (XML_CACHE.has(slug)) return XML_CACHE.get(slug);
+    const r = await fetch(`drawio/${slug}.drawio`, {cache:'force-cache'});
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const t = await r.text();
+    XML_CACHE.set(slug, t);
+    return t;
+  }
+
+  async function rendre(slug, cible) {
+    // cache : on renvoie une copie sans relancer le rendu
+    if (SVG_CACHE.has(slug)) {
+      const c = SVG_CACHE.get(slug).cloneNode(true);
+      if (cible) cible.appendChild(c.cloneNode(true));
+      return c;
+    }
+    const xml = await xmlDe(slug);
+    // le viewer a besoin d'un conteneur de taille connue : on rend hors écran, à taille fixe
+    const hote = document.createElement('div');
+    hote.className = 'mxgraph';
+    hote.style.cssText = 'position:fixed;left:-99999px;top:0;width:1100px;height:1500px;';
+    hote.dataset.mxgraph = JSON.stringify({xml, toolbar:'', nav:false, resize:true, editable:false, page:0});
+    document.body.appendChild(hote);
+    try {
+      await new Promise((res, rej) => {
+        const minuteur = setTimeout(() => rej(new Error('rendu trop long')), 30000);
+        try {
+          GraphViewer.createViewerForElement(hote, function () { clearTimeout(minuteur); res(); });
+        } catch (e) { clearTimeout(minuteur); rej(e); }
+      });
+      const svg = hote.querySelector('svg');
+      if (!svg) throw new Error('aucun SVG produit');
+      // le viewer fixe width/height (et min-width/min-height) : on passe par un viewBox
+      const w = parseFloat(svg.getAttribute('width')) || svg.getBoundingClientRect().width || 800;
+      const h = parseFloat(svg.getAttribute('height')) || svg.getBoundingClientRect().height || 1100;
+      if (!svg.getAttribute('viewBox')) svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+      svg.removeAttribute('width'); svg.removeAttribute('height');
+      svg.style.minWidth = '0'; svg.style.minHeight = '0';
+      svg.style.width = '100%'; svg.style.height = '100%';
+      const copie = svg.cloneNode(true);
+      copie.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      SVG_CACHE.set(slug, copie.cloneNode(true));
+      if (cible) cible.appendChild(copie.cloneNode(true));
+      return copie;
+    } finally {
+      hote.remove();
+    }
+  }
+
+  // ─────────── galerie ───────────
+  function dessinerGalerie() {
+    const g = $('#fiches');
+    g.innerHTML = '';
+    $('#compte').textContent = FICHES.length ? `(${FICHES.length})` : '';
+    if (!FICHES.length) {
+      g.innerHTML = '<p style="color:#b45309">Aucune fiche trouvée : il manque <code>drawio/index.json</code> ou l\'accès au dossier.</p>';
+      return;
+    }
+    FICHES.forEach(f => {
+      const el = document.createElement('div');
+      el.className = 'fiche'; el.dataset.slug = f.slug;
+      el.innerHTML = `<div class="vue"><span class="attente">…</span></div>
+        <div class="pied"><span class="nom" title="${esc(f.nom)}">${esc(f.nom)}</span>
+        <button class="plus" title="Ajouter à la planche">+</button></div>`;
+      el.querySelector('.plus').onclick = (e) => { e.stopPropagation(); ajouter(f.slug); };
+      el.querySelector('.vue').onclick = () => ouvrirApercu(f.slug, null);
+      g.appendChild(el);
+      observateur.observe(el);
+    });
+    majEtatGalerie();
+  }
+
+  // vignettes à la demande (23 fiches, dont certaines lourdes)
+  const observateur = new IntersectionObserver((entrees) => {
+    entrees.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      observateur.unobserve(el);
+      const slug = el.dataset.slug;
+      enFile(slug, el.querySelector('.vue')).then(svg => {
+        el.querySelector('.vue').innerHTML = '';
+        el.querySelector('.vue').appendChild(svg);
+      }).catch(err => {
+        el.querySelector('.vue').innerHTML = '<span class="attente">⚠ illisible</span>';
+        console.warn('fiche', slug, err);
+      });
+    });
+  }, {rootMargin:'300px'});
+
+  // ─────────── planche A4 ───────────
+  function dessinerPlanche() {
+    const p = $('#page');
+    p.innerHTML = '';
+    for (let i = 0; i < NB_CASES; i++) {
+      const c = document.createElement('div');
+      c.className = 'case' + (CHOIX[i] ? '' : ' vide');
+      c.dataset.i = i;
+      if (CHOIX[i]) {
+        const svg = SVG_CACHE.get(CHOIX[i]);
+        if (svg) c.appendChild(svg.cloneNode(true));
+        else c.innerHTML = '<span style="font-size:11px;color:#94a3b8">' + esc(CHOIX[i]) + '</span>';
+        c.innerHTML += `<button class="retirer" title="Retirer">✕</button>
+                        <button class="remplacer" title="Remplacer">↻</button>
+                        <span class="num">${i+1} · ${esc(CHOIX[i])}</span>`;
+        c.querySelector('.retirer').onclick = (e) => { e.stopPropagation(); CHOIX[i] = null; dessinerPlanche(); majEtatGalerie(); majUrl(); };
+        c.querySelector('.remplacer').onclick = (e) => { e.stopPropagation(); ouvrirApercu(CHOIX[i], i); };
+      } else {
+        c.innerHTML = `<span class="num">${i+1}</span>`;
+      }
+      c.onclick = () => { if (!CHOIX[i]) ouvrirApercu(null, i); };
+      p.appendChild(c);
+    }
+    ajusterEchelle();
+    appliquerAuCadre();
+  }
+
+  function appliquerAuCadre() {
+    // (re)injecte les SVG après un redessin de la planche
+    document.querySelectorAll('#page .case').forEach(c => {
+      const i = +c.dataset.i; const slug = CHOIX[i];
+      if (!slug) return;
+      const svg = SVG_CACHE.get(slug);
+      if (!svg) return;
+      const deja = c.querySelector('svg');
+      if (deja) return;
+      c.insertBefore(svg.cloneNode(true), c.firstChild);
+    });
+  }
+
+  function ajouter(slug) {
+    const dejaPris = CHOIX.includes(slug);
+    if (dejaPris) { notif('Cette fiche est déjà dans la planche.'); return; }
+    const libre = CHOIX.indexOf(null);
+    if (libre < 0) { notif('Planche complète (8 fiches) — retirez-en une.'); return; }
+    if (!SVG_CACHE.has(slug)) {
+      // pas encore rendue (vignette hors écran) : on la rend ici
+      enFile(slug, document.createElement('div')).then(() => { CHOIX[libre]=slug; dessinerPlanche(); majEtatGalerie(); majUrl(); })
+        .catch(()=>notif('Impossible de charger cette fiche.'));
+      return;
+    }
+    CHOIX[libre] = slug;
+    dessinerPlanche(); majEtatGalerie(); majUrl();
+  }
+
+  function majEtatGalerie() {
+    document.querySelectorAll('.fiche').forEach(el => {
+      el.classList.toggle('prise', CHOIX.includes(el.dataset.slug));
+    });
+  }
+
+  function majUrl() {
+    const sel = CHOIX.filter(Boolean);
+    const u = new URL(location.href);
+    if (sel.length) u.searchParams.set('f', sel.join(',')); else u.searchParams.delete('f');
+    history.replaceState(null, '', u);
+  }
+
+  function lireUrl() {
+    const p = new URL(location.href).searchParams.get('f');
+    if (!p) return;
+    p.split(',').map(s=>s.trim()).filter(Boolean).slice(0, NB_CASES)
+     .forEach((slug, i) => { if (FICHES.some(f => f.slug === slug)) CHOIX[i] = slug; });
+  }
+
+  // ─────────── échelle de l'aperçu (écran) ───────────
+  function ajusterEchelle() {
+    const cadre = document.querySelector('.apercu .cadre');
+    const zone = document.querySelector('.apercu');
+    if (!cadre || !zone) return;
+    const largeurPage = 1122.5;              // 297 mm à 96 dpi
+    const dispo = zone.clientWidth - 16;
+    const k = Math.min(1, dispo / largeurPage);
+    cadre.style.transform = `scale(${k})`;
+    cadre.style.width = largeurPage + 'px';
+    cadre.style.height = (793.7) + 'px';     // 210 mm
+    zone.style.height = (793.7 * k + 16) + 'px';
+  }
+  window.addEventListener('resize', ajusterEchelle);
+
+  // ─────────── modale (aperçu / choix) ───────────
+  function remplirListe() {
+    const l = $('#modale-liste');
+    l.innerHTML = '';
+    FICHES.forEach(f => {
+      const b = document.createElement('button');
+      b.textContent = f.nom;
+      b.onclick = () => { choisir(f.slug); };
+      l.appendChild(b);
+    });
+  }
+
+  function ouvrirApercu(slug, cible) {
+    caseCourante = cible;
+    $('#modale').classList.add('on');
+    $('#modale-titre').textContent = slug ? slug : (cible === null ? 'Aperçu' : 'Choisir pour la case ' + (cible+1));
+    remplirListe();
+    const grand = $('#modale-apercu');
+    if (!slug) { grand.innerHTML = '<span style="color:#9aa5ae;font-size:.85rem">Cliquez sur une fiche ci-dessous, ou sur une vignette pour l\'agrandir.</span>'; return; }
+    grand.innerHTML = '<span style="color:#9aa5ae;font-size:.85rem">Rendu…</span>';
+    enFile(slug, document.createElement('div')).then(svg => {
+      svg.setAttribute('preserveAspectRatio','xMidYMid meet');
+      svg.style.maxWidth='100%'; svg.style.maxHeight='70vh'; svg.style.width='auto'; svg.style.height='auto';
+      grand.innerHTML = ''; grand.appendChild(svg);
+      if (cible !== null) {
+        const b = document.createElement('button');
+        b.textContent = '➕ Placer ici';
+        b.style.cssText = 'margin-top:8px;padding:7px 12px;border:none;border-radius:6px;background:#2f7d4f;color:#fff;cursor:pointer';
+        b.onclick = () => choisir(slug);
+        grand.appendChild(b);
+      }
+    }).catch(() => { grand.textContent = 'Impossible de rendre cette fiche.'; });
+  }
+
+  function choisir(slug) {
+    if (caseCourante === null) { fermerModale(); ajouter(slug); return; }
+    CHOIX[caseCourante] = slug;
+    caseCourante = null;
+    fermerModale();
+    dessinerPlanche(); majEtatGalerie(); majUrl();
+  }
+
+  function fermerModale() { $('#modale').classList.remove('on'); }
+
+  // ─────────── boutons ───────────
+  $('#modale-fermer').onclick = fermerModale;
+  $('#modale').addEventListener('click', (e) => { if (e.target.id === 'modale') fermerModale(); });
+  $('#btn-imprimer').onclick = () => { if (!CHOIX.some(Boolean)) { notif('La planche est vide.'); return; } window.print(); };
+  $('#btn-vider').onclick = () => { CHOIX.fill(null); dessinerPlanche(); majEtatGalerie(); majUrl(); };
+  $('#btn-lien').onclick = async () => {
+    try { await navigator.clipboard.writeText(location.href); notif('Lien copié : ' + location.href); }
+    catch(e) { notif(location.href); }
+  };
+
+  // ─────────── démarrage ───────────
+  window.addEventListener('load', async () => {
+    if (!window.GraphViewer) {
+      $('#fiches').innerHTML = '<p style="color:#b45309">Le moteur de rendu drawio n\'a pas pu être chargé (viewer.diagrams.net). Vérifiez la connexion.</p>';
+      return;
+    }
+    FICHES = await chargerListe();
+    lireUrl();
+    dessinerGalerie();
+    dessinerPlanche();
+    // les fiches déjà choisies par l'URL doivent être rendues
+    const aRendre = [...new Set(CHOIX.filter(Boolean))].filter(s => !SVG_CACHE.has(s));
+    for (const s of aRendre) { try { await enFile(s, document.createElement('div')); } catch(e) {} }
+    if (aRendre.length) dessinerPlanche();
+  });
+})();
+</script>
+</body>
+</html>

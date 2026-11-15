@@ -1,0 +1,201 @@
+
+<!doctype html>
+<meta charset="utf-8">
+<title>Composeur A4</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  @page { size: A4 landscape; margin: 0 }
+  body { margin: 0; font-family: sans-serif }
+  #saisie { padding: 8px 12px }
+  #aide { background: #f4f6f8; border-left: 4px solid #4a8; padding: 8px 12px;
+          margin-bottom: 10px; font-size: 14px; line-height: 1.4 }
+  #aide h2 { margin: 0 0 4px; font-size: 16px }
+  #msg { color: #c00; margin-left: 8px }
+
+  /* mosaïque des miniatures */
+  #mosaique { display: grid; gap: 6px; margin-top: 10px;
+              grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)) }
+  .tuile { position: relative; aspect-ratio: 74 / 105; border: 1px solid #bbb;
+           background: #fafafa; cursor: pointer; overflow: hidden }
+  .tuile:hover { border-color: #4a8; box-shadow: 0 0 0 2px #4a8 }
+  .tuile img { width: 100%; height: 100%; object-fit: contain; display: block }
+  .tuile b { position: absolute; left: 0; top: 0; background: rgba(0,0,0,.7);
+             color: #fff; font-size: 13px; padding: 1px 6px }
+  .tuile.vide { background: repeating-linear-gradient(45deg,#eee,#eee 6px,#f8f8f8 6px,#f8f8f8 12px);
+                cursor: default }
+  .tuile.vide:hover { border-color: #bbb; box-shadow: none }
+
+  /* page A4 */
+  #page { width: 297mm; height: 210mm; display: grid;
+          grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 1fr) }
+  #page div { overflow: hidden; outline: .1mm solid #ccc;
+              display: flex; align-items: center; justify-content: center }
+  #page img { width: 100%; height: 100%; object-fit: contain }
+
+  @media print { #saisie { display: none } #page div { outline: none } }
+</style>
+
+<div id="saisie">
+
+  <!-- ===== TEXTE D'AIDE : à compléter ===== -->
+  <div id="aide">
+    <h2>Mode d'emploi</h2>
+    <p>Saisis 8 lettres (A à Z), puis clique sur « Composer ».
+       Tu peux aussi cliquer sur les miniatures ci-dessous pour ajouter une lettre.</p>
+    <p>Une même lettre peut être utilisée plusieurs fois.</p>
+
+
+
+    <hr/>
+    <p>document V0 Nov26 - ne pas diffuser</p> <br/>
+    <p>Collectif contre les idées d'extrême droite dans le bassin nazairien</p>
+
+
+    <!-- ajoute ici tes propres explications -->
+  </div>
+  <!-- ====================================== -->
+
+  <form onsubmit="go(event)">
+    <input id="s" maxlength="8" pattern="[A-Za-z]{8}" placeholder="8 lettres" required>
+    <button>Composer</button>
+    <button type="button" onclick="document.getElementById('s').value=''">Effacer</button>
+    <button type="button" onclick="print()">Imprimer</button>
+    <button type="button" onclick="pdf()">Télécharger PDF</button>
+    <span id="msg"></span>
+  </form>
+
+  <div id="mosaique"></div>
+</div>
+
+<div id="page"></div>
+
+<script>
+/* ===== TABLE DE CORRESPONDANCE : à remplir ===== */
+const IMAGES = {
+  A: "https://lh3.googleusercontent.com/pw/AP1GczPwdb9IiwglaPP0UgmXudp02q4isaW7JTlYVccldko__LvR-SN2yxd6FLoiN8UJV5U9jiyjh5lyC96kswU2uNilzmyx0Aq0J47RRIgTm7fFAwH3E0US99AbKh94dbaQ_FNpJBNKxkb14NMgh-w1laCRIw=w364-h506-s-no?authuser=0",
+  B: "https://lh3.googleusercontent.com/pw/AP1GczMt9JoNxIQmpVURL3_fYzCGxs9QMqLPs2wy0geQ64wINhyy0lzS1r19sicWK562cbbMtFQSvjBMH63l8aBhB66cK7pf0Ztujr91LmwDaztrF2QTPx1N8omWhCUgj0QfI0s5ZGSnETwCPBznpUu0eVt7-Q=w380-h509-s-no?authuser=0",
+  C: "https://lh3.googleusercontent.com/pw/AP1GczNgquHFylEfstKCFJI7To0ch2cC6HccoqPTgLTA5lTjgFzXFwAuMASDjbmRDHR0I62NUw5OuLRWPc3QtnVc1cQe2fV2SGxpnx9puUXCj4RdOrwdOi7z0d8KovPhzwFRgDZVI5c_38YuXWz1cEztN6spnQ=w589-h422-s-no?authuser=0",
+  D: "", E: "", F: "", G: "", H: "", I: "",
+  J: "", K: "", L: "", M: "", N: "", O: "", P: "",
+  Q: "", R: "", S: "", T: "", U: "", V: "", W: "",
+  X: "", Y: "", Z: ""
+};
+/* =============================================== */
+
+/* --- mosaïque des miniatures --- */
+(function () {
+  const m = document.getElementById("mosaique");
+  const champ = document.getElementById("s");
+  for (const c of "ABCDEFGHIJKLMNOPQRSTUVWXYZ") {
+    const t = document.createElement("div");
+    t.className = "tuile";
+    const url = IMAGES[c];
+    if (url) {
+      const img = new Image();
+      img.alt = c; img.loading = "lazy"; img.src = url;
+      img.onerror = () => { img.remove(); t.classList.add("vide"); };
+      t.append(img);
+      t.title = "Ajouter " + c;
+      t.onclick = () => { if (champ.value.length < 8) champ.value += c; champ.focus(); };
+    } else {
+      t.classList.add("vide");
+      t.title = c + " : pas d'image";
+    }
+    const l = document.createElement("b"); l.textContent = c;
+    t.append(l);
+    m.append(t);
+  }
+})();
+
+/* --- composition de la page --- */
+function go(e) {
+  e.preventDefault();
+  const page = document.getElementById("page");
+  const msg = document.getElementById("msg");
+  page.innerHTML = "";
+  msg.textContent = "";
+  const manquantes = [];
+
+  for (const c of document.getElementById("s").value.toUpperCase()) {
+    const cell = document.createElement("div");
+    const url = IMAGES[c];
+    if (url) {
+      const img = new Image();
+      img.alt = c;
+      img.crossOrigin = "anonymous";            // nécessaire pour l'export PDF
+      img.onerror = () => {
+        if (!img.dataset.retry) {               // serveur sans CORS : on affiche quand même
+          img.dataset.retry = "1";
+          img.removeAttribute("crossorigin");
+          img.src = url;
+        } else {
+          cell.textContent = "Erreur : " + c;
+        }
+      };
+      img.src = url;
+      cell.append(img);
+    } else {
+      cell.textContent = c + " ?";
+      manquantes.push(c);
+    }
+    page.append(cell);
+  }
+  if (manquantes.length)
+    msg.textContent = "Pas d'URL définie pour : " + [...new Set(manquantes)].join(", ");
+}
+
+/* --- export PDF --- */
+function pdf() {
+  const msg = document.getElementById("msg");
+  const cells = [...document.querySelectorAll("#page div")];
+  if (!cells.length) { msg.textContent = "Compose d'abord une page."; return; }
+
+  const doc = new jspdf.jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
+  const W = 297 / 4, H = 210 / 2;
+
+  try {
+    cells.forEach((cell, i) => {
+      const x = (i % 4) * W, y = Math.floor(i / 4) * H;
+      doc.setDrawColor(200); doc.setLineWidth(0.1); doc.rect(x, y, W, H);
+
+      const img = cell.querySelector("img");
+      if (!img || !img.complete || !img.naturalWidth) return;
+
+      const cv = document.createElement("canvas");
+      cv.width = img.naturalWidth; cv.height = img.naturalHeight;
+      const ctx = cv.getContext("2d");
+      ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, cv.width, cv.height);
+      ctx.drawImage(img, 0, 0);
+      const data = cv.toDataURL("image/jpeg", 0.92);
+
+      const r = Math.min(W / cv.width, H / cv.height);
+      const w = cv.width * r, h = cv.height * r;
+      doc.addImage(data, "JPEG", x + (W - w) / 2, y + (H - h) / 2, w, h);
+    });
+    doc.save("composition-A4.pdf");
+    msg.textContent = "";
+  } catch (err) {
+    msg.textContent = "Export impossible (le serveur d'images n'autorise pas CORS). " +
+                      "Utilise « Imprimer » puis « Enregistrer au format PDF ».";
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
