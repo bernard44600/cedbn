@@ -1,6 +1,6 @@
 <mxfile host="Electron">
   <diagram name="Page-1" id="J5p6Mt3v1SuXNy9PViS8">
-    <mxGraphModel dx="957" dy="793" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="413" pageHeight="583" math="0" shadow="0">
+    <mxGraphModel dx="695" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="413" pageHeight="583" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -11,7 +11,10 @@
           <mxGeometry height="100" width="387.66" x="13.000205468505897" y="26.00313252136567" as="geometry" />
         </mxCell>
         <mxCell id="rRjQ3ti4Slioc4m77Gz9-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;" value="Le RN remet en cause les fondamentaux de la liberté&lt;div&gt;&lt;br&gt;- la presse indépendante&lt;div&gt;- les associations et syndicats&lt;/div&gt;&lt;div&gt;- la culture&lt;br&gt;&lt;div&gt;- la justice&lt;/div&gt;&lt;div&gt;- les droits soiaux des plus faibles&lt;/div&gt;&lt;div&gt;- l&#39;ensemble des pratiques religieuse et la laicité&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Est dangereux pour chacun d&#39;entre nous&lt;br&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="150" width="297" x="50" y="200" as="geometry" />
+          <mxGeometry height="200" width="297" x="50" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="dkIoSYO20auWatizZEDM-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="L&#39;annonce d&#39;interdiction de la ligne des droiots de l&#39;homme est digne de dictateurs en herbe" vertex="1">
+          <mxGeometry height="50" width="297" x="50" y="380" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

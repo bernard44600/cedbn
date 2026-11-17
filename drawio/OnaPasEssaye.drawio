@@ -1,6 +1,6 @@
 <mxfile host="Electron">
   <diagram name="Page-1" id="J5p6Mt3v1SuXNy9PViS8">
-    <mxGraphModel dx="1627" dy="1005" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="413" pageHeight="583" math="0" shadow="0">
+    <mxGraphModel dx="695" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="413" pageHeight="583" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -10,17 +10,17 @@
         <mxCell id="pnTIe0feLh82Tz_ozwUF-35" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" value="&lt;div style=&quot;font-size: 14px; text-align: center;&quot;&gt;Plus récemment : aux USA, en Inde, en Pologne...&lt;br&gt;L&#39;extrême droite au pouvoir donne les mêmes résultats :&lt;/div&gt;" vertex="1">
           <mxGeometry height="60" width="350" x="42.99999999999994" y="279.99999999999994" as="geometry" />
         </mxCell>
-        <mxCell id="pnTIe0feLh82Tz_ozwUF-36" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=16;" value="&lt;b&gt;Montée de l&#39;insécurité&lt;/b&gt;" vertex="1">
-          <mxGeometry height="50" width="140" x="62.99999999999994" y="359.99999999999994" as="geometry" />
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-36" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=16;rotation=-15;" value="&lt;b&gt;Montée de l&#39;insécurité&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="140" x="38" y="360" as="geometry" />
         </mxCell>
-        <mxCell id="pnTIe0feLh82Tz_ozwUF-37" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=16;" value="&lt;b&gt;Appauvrissement&lt;br&gt;et inégalités&lt;/b&gt;" vertex="1">
-          <mxGeometry height="50" width="140" x="223" y="359.99999999999994" as="geometry" />
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-37" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=16;rotation=-15;" value="&lt;b&gt;Appauvrissement&lt;br&gt;et inégalités&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="140" x="227" y="356.99999999999994" as="geometry" />
         </mxCell>
-        <mxCell id="pnTIe0feLh82Tz_ozwUF-38" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=16;" value="&lt;b&gt;Mort d&#39;innocents&lt;/b&gt;" vertex="1">
-          <mxGeometry height="50" width="140" x="62.99999999999994" y="429.99999999999994" as="geometry" />
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-38" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=16;rotation=-15;" value="&lt;b&gt;Mort d&#39;innocents&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="140" x="42.99999999999994" y="441.99999999999994" as="geometry" />
         </mxCell>
-        <mxCell id="pnTIe0feLh82Tz_ozwUF-39" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=16;" value="&lt;b&gt;Perte des libertés&lt;/b&gt;" vertex="1">
-          <mxGeometry height="50" width="140" x="223" y="429.99999999999994" as="geometry" />
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-39" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=16;rotation=-15;" value="&lt;b&gt;Perte des libertés&lt;/b&gt;" vertex="1">
+          <mxGeometry height="50" width="140" x="223" y="439.99999999999994" as="geometry" />
         </mxCell>
         <mxCell id="pnTIe0feLh82Tz_ozwUF-40" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;perimeter=cloudPerimeter;fillColor=#fff2cc;strokeColor=#d6b656;opacity=50;opacityGroup=1;shadow=1;fontSize=24;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;rotation=-5;fontStyle=1;gradientColor=#ffd966;" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;b&gt;ON N&#39;A JAMAIS ESSAYÉ,&lt;br&gt;ÇA NE POURRA PAS ÊTRE PIRE&lt;/b&gt;&lt;/font&gt;" vertex="1">
           <mxGeometry height="100" width="387.66" x="13.000205468505953" y="30.00313252136587" as="geometry" />

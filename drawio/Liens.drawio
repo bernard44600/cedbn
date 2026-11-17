@@ -1,17 +1,17 @@
 <mxfile host="Electron">
   <diagram name="Page-1" id="J5p6Mt3v1SuXNy9PViS8">
-    <mxGraphModel dx="1627" dy="1005" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="413" pageHeight="583" math="0" shadow="0">
+    <mxGraphModel dx="695" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="413" pageHeight="583" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="pnTIe0feLh82Tz_ozwUF-91" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;perimeter=cloudPerimeter;fillColor=#fff2cc;strokeColor=#d6b656;opacity=50;opacityGroup=1;shadow=1;fontSize=24;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;rotation=-5;fontStyle=1;gradientColor=#ffd966;" value="Liens de sang" vertex="1">
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-91" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;perimeter=cloudPerimeter;fillColor=#fff2cc;strokeColor=#d6b656;opacity=50;opacityGroup=1;shadow=1;fontSize=24;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;rotation=-5;fontStyle=1;gradientColor=#ffd966;" value="Liens avec l&#39;AFD" vertex="1">
           <mxGeometry height="100" width="387.66" x="13.000205468505925" y="40.00313252136566" as="geometry" />
         </mxCell>
-        <mxCell id="pnTIe0feLh82Tz_ozwUF-92" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;align=left;" value="&lt;div&gt;Liens avec AFD&lt;/div&gt;" vertex="1">
-          <mxGeometry height="20" width="140" x="70.67000000000016" y="209.99999999999983" as="geometry" />
+        <mxCell id="pnTIe0feLh82Tz_ozwUF-92" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;align=left;" value="&lt;div&gt;Liens avec AFD (parti Nazi en allemagne)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="20" width="260" x="60" y="160" as="geometry" />
         </mxCell>
         <mxCell id="pnTIe0feLh82Tz_ozwUF-93" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" value="Avant 2024, le RN et l’AfD siégeaient dans le même groupe au Parlement européen&lt;br&gt;&lt;br&gt;Les règles du Parlement sont très claires : « En formant un groupe (…), les députés concernés reconnaissent, par définition, qu’ils partagent des affinités politiques »." vertex="1">
-          <mxGeometry height="160" width="220" x="130.67000000000016" y="239.99999999999983" as="geometry" />
+          <mxGeometry height="218" width="300" x="80" y="212" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
