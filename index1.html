@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiches — composition A4</title>
+<script src="https://viewer.diagrams.net/js/viewer-static.min.js" defer></script>
+<style>
+  :root{
+    --bg:#f4f6f8; --card:#fff; --ink:#1f2933; --muted:#6b7280; --line:#dde3e8;
+    --accent:#2f7d4f; --accent2:#1d5c39; --warn:#b45309;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15px}
+  header{background:var(--accent);color:#fff;padding:10px 14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  header h1{margin:0;font-size:1.05rem;font-weight:700;flex:1 1 200px}
+  header .actus{display:flex;gap:6px;flex-wrap:wrap}
+  header button{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.55);color:#fff;
+    padding:6px 10px;border-radius:6px;font-size:.85rem;cursor:pointer}
+  header button:hover{background:rgba(255,255,255,.32)}
+  header button.plein{background:#fff;color:var(--accent2);border-color:#fff;font-weight:700}
+  main{padding:10px;max-width:1400px;margin:0 auto}
+  h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:12px 2px 6px}
+
+  /* ── galerie des fiches ── */
+  #fiches{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:8px}
+  .fiche{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;
+         display:flex;flex-direction:column;position:relative}
+  .fiche .vue{aspect-ratio:210/297;background:#fbfcfd;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:zoom-in}
+  .fiche .vue svg{width:100%;height:100%}
+  .fiche .vue .attente{font-size:.7rem;color:#b9c2c9}
+  .fiche .pied{display:flex;align-items:center;gap:4px;padding:4px 6px;border-top:1px solid var(--line)}
+  .fiche .nom{flex:1;min-width:0;font-size:.72rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .fiche .plus{border:none;background:var(--accent);color:#fff;width:22px;height:22px;border-radius:5px;
+    cursor:pointer;font-weight:700;line-height:1;flex:none}
+  .mini-btn{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;flex:none;
+    border-radius:5px;background:#eef2f5;color:#334155;text-decoration:none;font-size:.8rem;line-height:1}
+  .mini-btn:hover{background:#dfe6ec;color:#0f172a}
+  .legende{font-size:.72rem;color:var(--muted);margin:4px 2px 0}
+  .legende b{color:#334155}
+  .fiche .plus:hover{background:var(--accent2)}
+  .fiche.prise{outline:2px solid var(--accent);outline-offset:-2px}
+  .fiche.prise .plus{background:#94a3b8}
+
+  /* ── planche A4 ── */
+  .apercu{background:#e7ebef;border:1px solid var(--line);border-radius:8px;padding:8px;overflow:hidden}
+  .apercu .cadre{transform-origin:top left}
+  #page{width:297mm;height:210mm;background:#fff;display:grid;grid-template-columns:repeat(4,1fr);
+        grid-template-rows:repeat(2,1fr);box-shadow:0 2px 10px rgba(0,0,0,.12)}
+  #page.format-4{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);}
+  .case{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;
+        border:.1mm solid #e3e7ea;cursor:pointer;background:#fff}
+  .case svg{width:100%;height:100%;display:block}
+
+  /* Ajout des !important pour écraser les styles en ligne du SVG injecté par JS */
+  #page.format-4 .case svg {
+    position: absolute !important;
+    width: 70.71% !important;
+    height: 141.42% !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) rotate(-90deg) !important;
+  }
+
+  .case.vide{background:repeating-linear-gradient(45deg,#fafbfc,#fafbfc 8px,#f2f5f7 8px,#f2f5f7 16px);color:#aab4bd}
+  .case.vide::after{content:"+";font-size:28px;font-weight:300}
+  .case .num{position:absolute;left:2px;top:2px;font-size:10px;font-weight:600;color:#1f2933;background:rgba(255,255,255,.92);padding:2px 4px;border-radius:3px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+  .case .retirer{position:absolute;right:2px;top:2px;border:none;background:rgba(0,0,0,.45);color:#fff;
+    width:18px;height:18px;border-radius:4px;font-size:11px;line-height:1;cursor:pointer;opacity:0;transition:opacity .12s}
+  .case:hover .retirer{opacity:1}
+  .case .remplacer{position:absolute;left:2px;bottom:2px;border:none;background:rgba(0,0,0,.45);color:#fff;
+    padding:1px 5px;border-radius:4px;font-size:10px;cursor:pointer;opacity:0;transition:opacity .12s}
+  .case:hover .remplacer{opacity:1}
+
+  /* ── sélecteur (modale) ── */
+  #modale{position:fixed;inset:0;background:rgba(15,23,32,.55);display:none;z-index:50;padding:12px}
+  #modale.on{display:flex;align-items:center;justify-content:center}
+  #modale .boite{background:#fff;border-radius:10px;max-width:960px;width:100%;height:85vh;display:flex;flex-direction:column;overflow:hidden}
+  #modale .tete{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line)}
+  #modale .tete strong{flex:1;font-size:.9rem}
+  #modale .tete button{border:none;background:#eef2f5;border-radius:6px;padding:4px 9px;cursor:pointer}
+
+  #modale .corps{display:flex;flex:1;overflow:hidden;padding:0}
+  #modale .liste{width:240px;border-right:1px solid var(--line);background:#fbfcfd;padding:10px;overflow-y:auto;display:flex;flex-direction:column;gap:4px}
+  #modale .liste button{border:1px solid var(--line);background:#fff;border-radius:6px;padding:4px 6px;font-size:.75rem;
+    cursor:pointer;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #modale .liste button:hover{border-color:var(--accent);color:var(--accent2)}
+
+  #modale .grand{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;background:#fff;overflow:auto;position:relative}
+  #modale .grand svg{max-width:100%;max-height:calc(100% - 50px)}
+  #modale .ajout-focus{margin-top:12px;padding:8px 16px;border:none;border-radius:6px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.15);font-size:.9rem;transition:background 0.2s}
+  #modale .ajout-focus:hover{background:var(--accent2)}
+
+  header button.info{width:26px;height:26px;padding:0;border-radius:50%;font-weight:700;
+    font-size:.95rem;line-height:1;display:inline-flex;align-items:center;justify-content:center}
+  #info-bulle{position:fixed;z-index:60;top:52px;right:14px;max-width:min(420px,92vw);
+    background:#fff;color:var(--ink);border:1px solid var(--line);border-left:4px solid var(--warn);
+    border-radius:8px;padding:10px 14px;box-shadow:0 6px 22px rgba(0,0,0,.18);font-size:.85rem;line-height:1.4}
+  #info-bulle p{margin:0 0 6px}
+  #info-bulle p:last-child{margin-bottom:0;color:#475569}
+  #info-bulle .titre{font-weight:600;color:#7c2d12}
+
+  #notif{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);background:#1f2933;color:#fff;
+    padding:8px 14px;border-radius:6px;font-size:.82rem;opacity:0;pointer-events:none;transition:opacity .25s;z-index:90;max-width:92vw;text-align:center}
+  #notif.on{opacity:1}
+
+  /* ── impression : seulement la planche ── */
+  @page{size:A4 landscape;margin:0}
+  @media print{
+    html,body{margin:0;padding:0;background:#fff;width:297mm;height:210mm;overflow:hidden}
+    header, main > *:not(.apercu), #modale, #notif, #info-bulle{display:none !important}
+    main{padding:0;margin:0;max-width:none}
+    .apercu{padding:0;border:none;background:#fff;overflow:visible;height:auto !important}
+    .apercu .cadre{transform:none !important;width:auto !important;height:auto !important}
+    #page{width:297mm;height:210mm;box-shadow:none;page-break-inside:avoid;break-inside:avoid}
+    .case{border:none}
+    .case.vide{background:#fff}
+    .case.vide::after,.case .num,.case .retirer,.case .remplacer{display:none !important}
+  }
+  @media (max-width:640px){
+    #fiches{grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:6px}
+    header h1{font-size:.95rem}
+    #modale .corps{flex-direction:column}
+    #modale .liste{width:100%;height:30%;border-right:none;border-bottom:1px solid var(--line)}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🗂️ Fiches — composition A4</h1>
+  <button id="btn-info" class="info" title="À propos de ce document" aria-label="Informations">?</button>
+  <div class="actus">
+    <button id="btn-format">Format: 8/page</button>
+    <button id="btn-vider">Vider la planche</button>
+    <button id="btn-lien">Lien de la sélection</button>
+    <button id="btn-imprimer" class="plein">🖨️ Imprimer / PDF</button>
+  </div>
+</header>
+
+<main>
+  <h2>Fiches disponibles <span id="compte"></span></h2>
+  <div id="fiches"><p style="color:#6b7280">Chargement de la liste…</p></div>
+  <p class="legende"><b>⬇</b> télécharge le fichier <code>.drawio</code> · <b>✎</b> l'ouvre dans l'éditeur
+     diagrams.net (enregistrement : <b>Fichier → Enregistrer sous → Appareil</b>) · <b>+</b> l'ajoute à la planche</p>
+
+  <h2 id="titre-planche">Planche A4 (8 fiches, 4 × 2)</h2>
+  <div class="apercu">
+    <div class="cadre"><div id="page"></div></div>
+  </div>
+</main>
+
+<div id="modale"><div class="boite">
+  <div class="tete"><strong id="modale-titre">Choisir une fiche</strong>
+    <button id="modale-fermer">Fermer</button></div>
+  <div class="corps">
+    <div class="liste" id="modale-liste"></div>
+    <div class="grand" id="modale-apercu"></div>
+  </div>
+</div></div>
+
+<div id="info-bulle" hidden>
+  <p class="titre">document V0 Nov26 — <strong>ne pas diffuser</strong></p>
+  <p>Collectif contre les idées d'extrême droite dans le bassin nazairien</p>
+</div>
+
+<div id="notif"></div>
+
+<script>
+(function(){
+  'use strict';
+
+  let NB_CASES = 8;
+  let FICHES = [];
+  const SVG_CACHE = new Map();
+  const XML_CACHE = new Map();
+  let CHOIX = new Array(NB_CASES).fill(null);
+  let caseCourante = null;
+
+  const $ = (s) => document.querySelector(s);
+  const notif = (m) => { const n=$('#notif'); n.textContent=m; n.className='on'; clearTimeout(n._t);
+                         n._t=setTimeout(()=>n.className='',2600); };
+  const esc = (s)=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+  // ─────────── format (4 ou 8) ───────────
+  $('#btn-format').onclick = () => {
+    if (NB_CASES === 8) {
+      NB_CASES = 4;
+      $('#btn-format').textContent = 'Format: 4/page';
+      $('#page').classList.add('format-4');
+      $('#titre-planche').textContent = 'Planche A4 (4 fiches, 2 × 2)';
+      CHOIX = CHOIX.slice(0, 4);
+    } else {
+      NB_CASES = 8;
+      $('#btn-format').textContent = 'Format: 8/page';
+      $('#page').classList.remove('format-4');
+      $('#titre-planche').textContent = 'Planche A4 (8 fiches, 4 × 2)';
+      while(CHOIX.length < 8) CHOIX.push(null);
+    }
+    dessinerPlanche(); majEtatGalerie(); majUrl();
+  };
+
+  // ─────────── liste des fiches ───────────
+  async function chargerListe() {
+    const versFiches = (noms) => noms.map(n => {
+      const s = n.endsWith('.drawio') ? n.slice(0, -7) : n;
+      return { slug: s, nom: s };
+    });
+    const m = location.hostname.match(/^([^.]+)\.github\.io$/);
+    if (m) {
+      const depot = location.pathname.split('/').filter(Boolean)[0];
+      if (depot) {
+        try {
+          const r = await fetch(`https://api.github.com/repos/${m[1]}/${depot}/contents/drawio`,
+                                {headers: {'Accept': 'application/vnd.github+json'}});
+          if (r.ok) {
+            const d = await r.json();
+            const noms = d.filter(f => f.name.endsWith('.drawio')).map(f => f.name);
+            if (noms.length) return versFiches(noms);
+          }
+        } catch (e) { }
+      }
+    }
+    try {
+      const r = await fetch('drawio/index.json', {cache:'no-cache'});
+      if (r.ok) {
+        const d = await r.json();
+        const noms = (Array.isArray(d) ? d : d.fichiers || []);
+        if (noms.length) return versFiches(noms);
+      }
+    } catch (e) { }
+    return [];
+  }
+
+  // ─────────── rendu d'une fiche via le viewer drawio ───────────
+  const _attente = [];
+  let _actifs = 0;
+  const PARALLELE = 1;
+  function enFile(slug, cible) {
+    return new Promise((resolve, reject) => {
+      _attente.push({ slug, cible, resolve, reject });
+      _lancer();
+    });
+  }
+  function _lancer() {
+    while (_actifs < PARALLELE && _attente.length) {
+      const job = _attente.shift();
+      _actifs++;
+      rendre(job.slug, job.cible).then(
+        (r) => { _actifs--; job.resolve(r); _lancer(); },
+        (e) => { _actifs--; job.reject(e); _lancer(); }
+      );
+    }
+  }
+
+  async function xmlDe(slug) {
+    if (XML_CACHE.has(slug)) return XML_CACHE.get(slug);
+    const r = await fetch(`drawio/${slug}.drawio`, {cache:'force-cache'});
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const t = await r.text();
+    XML_CACHE.set(slug, t);
+    return t;
+  }
+
+  async function rendre(slug, cible) {
+    if (SVG_CACHE.has(slug)) {
+      const c = SVG_CACHE.get(slug).cloneNode(true);
+      if (cible) cible.appendChild(c.cloneNode(true));
+      return c;
+    }
+    const xml = await xmlDe(slug);
+    const hote = document.createElement('div');
+    hote.className = 'mxgraph';
+    hote.style.cssText = 'position:fixed;left:-99999px;top:0;width:1100px;height:1500px;';
+    hote.dataset.mxgraph = JSON.stringify({xml, toolbar:'', nav:false, resize:true, editable:false, page:0});
+    document.body.appendChild(hote);
+    try {
+      await new Promise((res, rej) => {
+        const minuteur = setTimeout(() => rej(new Error('rendu trop long')), 30000);
+        try {
+          GraphViewer.createViewerForElement(hote, function () { clearTimeout(minuteur); res(); });
+        } catch (e) { clearTimeout(minuteur); rej(e); }
+      });
+      const svg = hote.querySelector('svg');
+      if (!svg) throw new Error('aucun SVG produit');
+      const w = parseFloat(svg.getAttribute('width')) || svg.getBoundingClientRect().width || 800;
+      const h = parseFloat(svg.getAttribute('height')) || svg.getBoundingClientRect().height || 1100;
+      if (!svg.getAttribute('viewBox')) svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+      svg.removeAttribute('width'); svg.removeAttribute('height');
+      svg.style.minWidth = '0'; svg.style.minHeight = '0';
+      svg.style.width = '100%'; svg.style.height = '100%';
+      const copie = svg.cloneNode(true);
+      copie.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      SVG_CACHE.set(slug, copie.cloneNode(true));
+      if (cible) cible.appendChild(copie.cloneNode(true));
+      return copie;
+    } finally {
+      hote.remove();
+    }
+  }
+
+  // ─────────── galerie ───────────
+  function dessinerGalerie() {
+    const g = $('#fiches');
+    g.innerHTML = '';
+    $('#compte').textContent = FICHES.length ? `(${FICHES.length})` : '';
+    if (!FICHES.length) {
+      g.innerHTML = '<p style="color:#b45309">Aucune fiche trouvée.</p>';
+      return;
+    }
+    FICHES.forEach(f => {
+      const el = document.createElement('div');
+      el.className = 'fiche'; el.dataset.slug = f.slug;
+      const url = new URL(`drawio/${encodeURIComponent(f.slug)}.drawio`, location.href).href;
+      const edit = 'https://app.diagrams.net/?url=' + encodeURIComponent(url) +
+                   '&title=' + encodeURIComponent(f.slug + '.drawio') + '&nav=1&lang=fr';
+      el.innerHTML = `<div class="vue"><span class="attente">…</span></div>
+        <div class="pied"><span class="nom" title="${esc(f.nom)}">${esc(f.nom)}</span>
+          <a class="mini-btn" href="${esc(url)}" download>⬇</a>
+          <a class="mini-btn" href="${esc(edit)}" target="_blank" rel="noopener">✎</a>
+          <button class="plus" title="Ajouter à la planche">+</button></div>`;
+      el.querySelector('.plus').onclick = (e) => { e.stopPropagation(); ajouter(f.slug); };
+      el.querySelector('.vue').onclick = () => ouvrirApercu(f.slug, null);
+      g.appendChild(el);
+      enFile(f.slug, el.querySelector('.vue')).then(() => {
+        const v = el.querySelector('.vue');
+        const att = v && v.querySelector('.attente');
+        if (att) att.remove();
+      }).catch(err => {
+        el.querySelector('.vue').innerHTML = '<span class="attente">⚠ illisible</span>';
+      });
+    });
+    majEtatGalerie();
+  }
+
+  // ─────────── planche A4 ───────────
+  function dessinerPlanche() {
+    const p = $('#page');
+    p.innerHTML = '';
+    for (let i = 0; i < NB_CASES; i++) {
+      const c = document.createElement('div');
+      c.className = 'case' + (CHOIX[i] ? '' : ' vide');
+      c.dataset.i = i;
+      if (CHOIX[i]) {
+        const svg = SVG_CACHE.get(CHOIX[i]);
+        if (svg) c.appendChild(svg.cloneNode(true));
+        else c.innerHTML = '<span style="font-size:11px;color:#94a3b8">' + esc(CHOIX[i]) + '</span>';
+        c.innerHTML += `<button class="retirer" title="Retirer">✕</button>
+                        <button class="remplacer" title="Remplacer">↻</button>
+                        <span class="num">${i+1} · ${esc(CHOIX[i])}</span>`;
+        c.querySelector('.retirer').onclick = (e) => { e.stopPropagation(); CHOIX[i] = null; dessinerPlanche(); majEtatGalerie(); majUrl(); };
+        c.querySelector('.remplacer').onclick = (e) => { e.stopPropagation(); ouvrirApercu(CHOIX[i], i); };
+      } else {
+        c.innerHTML = `<span class="num">${i+1}</span>`;
+      }
+      c.onclick = () => { if (!CHOIX[i]) ouvrirApercu(null, i); };
+      p.appendChild(c);
+    }
+    ajusterEchelle();
+    appliquerAuCadre();
+  }
+
+  function appliquerAuCadre() {
+    document.querySelectorAll('#page .case').forEach(c => {
+      const i = +c.dataset.i; const slug = CHOIX[i];
+      if (!slug) return;
+      const svg = SVG_CACHE.get(slug);
+      if (!svg) return;
+      if (c.querySelector('svg')) return;
+      c.insertBefore(svg.cloneNode(true), c.firstChild);
+    });
+  }
+
+  function ajouter(slug) {
+    const dejaPris = CHOIX.includes(slug);
+    if (dejaPris) { notif('Cette fiche est déjà dans la planche.'); return; }
+    const libre = CHOIX.indexOf(null);
+    if (libre < 0) { notif(`Planche complète (${NB_CASES} fiches) — retirez-en une.`); return; }
+    if (!SVG_CACHE.has(slug)) {
+      enFile(slug, document.createElement('div')).then(() => { CHOIX[libre]=slug; dessinerPlanche(); majEtatGalerie(); majUrl(); })
+        .catch(()=>notif('Impossible de charger cette fiche.'));
+      return;
+    }
+    CHOIX[libre] = slug;
+    dessinerPlanche(); majEtatGalerie(); majUrl();
+  }
+
+  function majEtatGalerie() {
+    document.querySelectorAll('.fiche').forEach(el => {
+      el.classList.toggle('prise', CHOIX.includes(el.dataset.slug));
+    });
+  }
+
+  function majUrl() {
+    const sel = CHOIX.filter(Boolean);
+    const u = new URL(location.href);
+    if (sel.length) u.searchParams.set('f', sel.join(',')); else u.searchParams.delete('f');
+    history.replaceState(null, '', u);
+  }
+
+  function lireUrl() {
+    const p = new URL(location.href).searchParams.get('f');
+    if (!p) return;
+    p.split(',').map(s=>s.trim()).filter(Boolean).slice(0, NB_CASES)
+     .forEach((slug, i) => { if (FICHES.some(f => f.slug === slug)) CHOIX[i] = slug; });
+  }
+
+  function ajusterEchelle() {
+    const cadre = document.querySelector('.apercu .cadre');
+    const zone = document.querySelector('.apercu');
+    if (!cadre || !zone) return;
+    const largeurPage = 1122.5;
+    const dispo = zone.clientWidth - 16;
+    const k = Math.min(1, dispo / largeurPage);
+    cadre.style.transform = `scale(${k})`;
+    cadre.style.width = largeurPage + 'px';
+    cadre.style.height = (793.7) + 'px';
+    zone.style.height = (793.7 * k + 16) + 'px';
+  }
+  window.addEventListener('resize', ajusterEchelle);
+
+  // ─────────── modale (aperçu / focus) ───────────
+  function remplirListe() {
+    const l = $('#modale-liste');
+    l.innerHTML = '';
+    FICHES.forEach(f => {
+      const b = document.createElement('button');
+      b.textContent = f.nom;
+      b.onclick = () => focusImage(f.slug);
+      l.appendChild(b);
+    });
+  }
+
+  function focusImage(slug) {
+    const grand = $('#modale-apercu');
+    grand.innerHTML = '<span style="color:#9aa5ae;font-size:.85rem">Rendu en cours…</span>';
+    enFile(slug, document.createElement('div')).then(svg => {
+      svg.setAttribute('preserveAspectRatio','xMidYMid meet');
+      svg.style.maxWidth='100%'; svg.style.maxHeight='calc(100% - 50px)'; svg.style.width='auto'; svg.style.height='auto';
+      grand.innerHTML = '';
+      grand.appendChild(svg);
+
+      const b = document.createElement('button');
+      b.className = 'ajout-focus';
+      b.textContent = caseCourante !== null ? '➕ Placer dans la case ' + (caseCourante+1) : '➕ Ajouter à la planche';
+      b.onclick = () => choisir(slug);
+      grand.appendChild(b);
+    }).catch(() => { grand.textContent = 'Impossible de rendre cette fiche.'; });
+  }
+
+  function ouvrirApercu(slug, cible) {
+    caseCourante = cible;
+    $('#modale').classList.add('on');
+    $('#modale-titre').textContent = cible !== null ? 'Choisir pour la case ' + (cible+1) : 'Aperçu et sélection';
+    remplirListe();
+    const grand = $('#modale-apercu');
+    if (!slug) {
+      grand.innerHTML = '<span style="color:#9aa5ae;font-size:.85rem">Sélectionnez une fiche dans la liste de gauche.</span>';
+    } else {
+      focusImage(slug);
+    }
+  }
+
+  function choisir(slug) {
+    if (caseCourante === null) {
+      ajouter(slug);
+      const btn = document.querySelector('#modale .ajout-focus');
+      if (btn) {
+        const oldText = btn.textContent;
+        btn.textContent = '✔ Ajouté !';
+        btn.style.background = '#1d5c39';
+        setTimeout(() => {
+          btn.textContent = oldText;
+          btn.style.background = '';
+        }, 1200);
+      }
+      return;
+    }
+
+    CHOIX[caseCourante] = slug;
+    caseCourante = null;
+    fermerModale();
+    dessinerPlanche(); majEtatGalerie(); majUrl();
+  }
+
+  function fermerModale() { $('#modale').classList.remove('on'); }
+
+  // ─────────── boutons ───────────
+  $('#modale-fermer').onclick = fermerModale;
+  $('#modale').addEventListener('click', (e) => { if (e.target.id === 'modale') fermerModale(); });
+  const bulle = $('#info-bulle');
+  $('#btn-info').onclick = (e) => { e.stopPropagation(); bulle.hidden = !bulle.hidden; };
+  document.addEventListener('click', (e) => {
+    if (!bulle.hidden && !bulle.contains(e.target) && e.target.id !== 'btn-info') bulle.hidden = true;
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') bulle.hidden = true; });
+
+  $('#btn-imprimer').onclick = () => { if (!CHOIX.some(Boolean)) { notif('La planche est vide.'); return; } window.print(); };
+  $('#btn-vider').onclick = () => { CHOIX.fill(null); dessinerPlanche(); majEtatGalerie(); majUrl(); };
+  $('#btn-lien').onclick = async () => {
+    try { await navigator.clipboard.writeText(location.href); notif('Lien copié : ' + location.href); }
+    catch(e) { notif(location.href); }
+  };
+
+  // ─────────── démarrage ───────────
+  window.addEventListener('load', async () => {
+    if (!window.GraphViewer) {
+      $('#fiches').innerHTML = '<p style="color:#b45309">Le moteur de rendu drawio n\'a pas pu être chargé. Vérifiez la connexion.</p>';
+      return;
+    }
+    FICHES = await chargerListe();
+    lireUrl();
+    dessinerGalerie();
+    dessinerPlanche();
+    const aRendre = [...new Set(CHOIX.filter(Boolean))].filter(s => !SVG_CACHE.has(s));
+    for (const s of aRendre) { try { await enFile(s, document.createElement('div')); } catch(e) {} }
+    if (aRendre.length) dessinerPlanche();
+  });
+})();
+</script>
+</body>
+</html>
