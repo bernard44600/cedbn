@@ -106,8 +106,14 @@
 
   /* ── impression : seulement la planche ── */
   @page{size:A4 landscape;margin:0}
+  /* aperçu niveaux de gris : montre ce que donnera une laser noir et blanc */
+  body.nb #page, body.nb #fiches .vue, body.nb #modale .grand{filter:grayscale(1) contrast(1.05)}
+  body.nb #btn-nb{background:#d97706;border-color:#d97706;color:#fff;font-weight:700}
+
   @media print{
     html,body{margin:0;padding:0;background:#fff;width:297mm;height:210mm;overflow:hidden}
+    /* sans ça le navigateur supprime les fonds et recolore les textes clairs */
+    #page, #page svg, #page svg *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
     header, main > *:not(.apercu), #modale, #notif, #info-bulle{display:none !important}
     main{padding:0;margin:0;max-width:none}
     .apercu{padding:0;border:none;background:#fff;overflow:visible;height:auto !important}
@@ -135,6 +141,7 @@
     <button id="btn-format">Format: 8/page</button>
     <button id="btn-vider">Vider la planche</button>
     <button id="btn-lien">Lien de la sélection</button>
+    <button id="btn-nb" title="Aperçu en niveaux de gris (comme une imprimante noir et blanc)">N&amp;B</button>
     <button id="btn-imprimer" class="plein">🖨️ Imprimer / PDF</button>
   </div>
 </header>
@@ -511,6 +518,13 @@
     if (!bulle.hidden && !bulle.contains(e.target) && e.target.id !== 'btn-info') bulle.hidden = true;
   });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') bulle.hidden = true; });
+
+  $('#btn-nb').onclick = () => {
+    document.body.classList.toggle('nb');
+    const actif = document.body.classList.contains('nb');
+    $('#btn-nb').textContent = actif ? 'N&B ✓' : 'N&B';
+    notif(actif ? 'Aperçu niveaux de gris (aussi à l\'impression)' : 'Aperçu couleurs');
+  };
 
   $('#btn-imprimer').onclick = () => { if (!CHOIX.some(Boolean)) { notif('La planche est vide.'); return; } window.print(); };
   $('#btn-vider').onclick = () => { CHOIX.fill(null); dessinerPlanche(); majEtatGalerie(); majUrl(); };
