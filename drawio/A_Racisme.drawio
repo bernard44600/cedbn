@@ -1,14 +1,23 @@
 <mxfile host="Electron">
   <diagram name="Page-1" id="J5p6Mt3v1SuXNy9PViS8">
-    <mxGraphModel dx="804" dy="667" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="413" pageHeight="583" math="0" shadow="0">
+    <mxGraphModel dx="908" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="413" pageHeight="583" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="pnTIe0feLh82Tz_ozwUF-74" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;perimeter=cloudPerimeter;fillColor=#fff2cc;strokeColor=#d6b656;opacity=50;opacityGroup=1;shadow=1;fontSize=24;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;rotation=-5;fontStyle=1;gradientColor=#ffd966;" value="Ils ont changé&lt;br&gt;le RN n&#39;est plus raciste" vertex="1">
-          <mxGeometry height="100" width="387.66" x="13.000205468505897" y="40.003132521365885" as="geometry" />
+        <mxCell id="MxOOsI814uTzqejyAhtk-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#FFF2CC;gradientColor=none;gradientDirection=north;roundedPerimeter=1;shadow=1;glass=0;multiple=0;fontFamily=Tahoma;labelBackgroundColor=none;arcSize=27;" value="&lt;font face=&quot;Helvetica&quot;&gt;&lt;font style=&quot;font-weight: bold;&quot;&gt;RACISMES&lt;br&gt;&lt;/font&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;l&#39;extreme droite ...&lt;/font&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="56" width="390" x="10" y="10" as="geometry" />
         </mxCell>
-        <mxCell id="EYEbtPsC4WHX9RL7g3Ne-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
-          <mxGeometry height="40" width="340" x="40" y="520" as="geometry" />
+        <mxCell id="MxOOsI814uTzqejyAhtk-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;spacingLeft=2;" value="" vertex="1">
+          <mxGeometry height="60" width="300" x="20" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="MxOOsI814uTzqejyAhtk-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;spacingLeft=2;" value="" vertex="1">
+          <mxGeometry height="60" width="300" x="20" y="156" as="geometry" />
+        </mxCell>
+        <mxCell id="MxOOsI814uTzqejyAhtk-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;spacingLeft=2;" value="" vertex="1">
+          <mxGeometry height="60" width="300" x="20" y="216" as="geometry" />
+        </mxCell>
+        <mxCell id="MxOOsI814uTzqejyAhtk-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;spacingLeft=2;" value="" vertex="1">
+          <mxGeometry height="60" width="300" x="20" y="516" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
