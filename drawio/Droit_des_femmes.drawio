@@ -1,14 +1,59 @@
 <mxfile host="Electron">
   <diagram name="Page-1" id="J5p6Mt3v1SuXNy9PViS8">
-    <mxGraphModel dx="1627" dy="1005" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="413" pageHeight="583" math="0" shadow="0">
+    <mxGraphModel dx="695" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="413" pageHeight="583" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="pnTIe0feLh82Tz_ozwUF-81" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;perimeter=cloudPerimeter;fillColor=#fff2cc;strokeColor=#d6b656;opacity=50;opacityGroup=1;shadow=1;fontSize=24;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;rotation=-5;fontStyle=1;gradientColor=#ffd966;" value="Droit des femmes" vertex="1">
-          <mxGeometry height="100" width="387.66" x="13.000205468505925" y="40.00313252136566" as="geometry" />
+        <mxCell id="-oPs62725rQyMZqKjYLc-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#FFF2CC;gradientColor=default;gradientDirection=north;roundedPerimeter=1;shadow=1;glass=0;multiple=0;fontFamily=Tahoma;labelBackgroundColor=none;arcSize=27;" value="DROIT DES FEMMES&lt;br&gt;kjkljkj" vertex="1">
+          <mxGeometry height="56" width="390" x="13" y="17" as="geometry" />
         </mxCell>
-        <mxCell id="pnTIe0feLh82Tz_ozwUF-82" parent="1" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" value="- contre les moyens de l&#39;IVG (réduction budget planning)&lt;br&gt;- contre la contraception masculine&lt;br&gt;- contre l&#39;égalité des salaires homme-femme&lt;br&gt;- viols : contre la notion de consentement&lt;br&gt;- retraites (ignore les carrières hachées, et salaires inférieurs aux hommes)&lt;ul style=&quot;font-size: 14px;&quot;&gt;&lt;li&gt;&lt;br&gt;&lt;/li&gt;&lt;/ul&gt;" vertex="1">
-          <mxGeometry height="310" width="278.83" x="93.00000000000003" y="159.99999999999983" as="geometry" />
+        <mxCell id="-oPs62725rQyMZqKjYLc-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;spacingLeft=2;" value="Intégrer le consentement à la définition du viol et agressions sexuelles" vertex="1">
+          <mxGeometry height="60" width="300" x="23" y="103" as="geometry" />
+        </mxCell>
+        <mxCell id="-oPs62725rQyMZqKjYLc-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;spacingLeft=2;" value="Interdire les dépassements d&#39;honoraire pour les consultations de santé sexuelles" vertex="1">
+          <mxGeometry height="60" width="300" x="23" y="163" as="geometry" />
+        </mxCell>
+        <mxCell id="-oPs62725rQyMZqKjYLc-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;spacingLeft=2;" value="&lt;font&gt;contre les moyens de l&#39;IVG &lt;br&gt;(réduction du budget planning familial)&amp;nbsp;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="300" x="23" y="223" as="geometry" />
+        </mxCell>
+        <mxCell id="-oPs62725rQyMZqKjYLc-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;spacingLeft=2;" value="" vertex="1">
+          <mxGeometry height="60" width="300" x="23" y="283" as="geometry" />
+        </mxCell>
+        <mxCell id="-oPs62725rQyMZqKjYLc-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;spacingLeft=2;" value="&amp;nbsp;prise en charge de la contraception masculine et des préservatises féminins." vertex="1">
+          <mxGeometry height="60" width="300" x="23" y="343" as="geometry" />
+        </mxCell>
+        <mxCell id="-oPs62725rQyMZqKjYLc-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;spacingLeft=2;" value="&amp;nbsp;Formez des magistrats ou violences intrafamiliales." vertex="1">
+          <mxGeometry height="60" width="300" x="23" y="403" as="geometry" />
+        </mxCell>
+        <mxCell id="-oPs62725rQyMZqKjYLc-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;spacingLeft=2;" value="" vertex="1">
+          <mxGeometry height="60" width="300" x="23" y="463" as="geometry" />
+        </mxCell>
+        <mxCell id="-oPs62725rQyMZqKjYLc-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;spacingLeft=2;" value="" vertex="1">
+          <mxGeometry height="60" width="300" x="23" y="523" as="geometry" />
+        </mxCell>
+        <mxCell id="-oPs62725rQyMZqKjYLc-10" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#B20000;fillColor=#e51400;align=center;verticalAlign=middle;rounded=1;fontSize=18;fontColor=#ffffff;fontStyle=1;roundedPerimeter=1;arcSize=37;rotation=-10;" value="CONTRE" vertex="1">
+          <mxGeometry height="30" width="80" x="322.99703278549225" y="117.99804340186031" as="geometry" />
+        </mxCell>
+        <mxCell id="-oPs62725rQyMZqKjYLc-11" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#B20000;fillColor=#e51400;align=center;verticalAlign=middle;rounded=1;fontSize=18;fontColor=#ffffff;fontStyle=1;roundedPerimeter=1;arcSize=37;rotation=-10;" value="CONTRE" vertex="1">
+          <mxGeometry height="30" width="80" x="322.99703278549225" y="177.99804340186034" as="geometry" />
+        </mxCell>
+        <mxCell id="-oPs62725rQyMZqKjYLc-12" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#B20000;fillColor=#e51400;align=center;verticalAlign=middle;rounded=1;fontSize=18;fontColor=#ffffff;fontStyle=1;roundedPerimeter=1;arcSize=37;rotation=-10;" value="CONTRE" vertex="1">
+          <mxGeometry height="30" width="80" x="322.99703278549225" y="237.99804340186034" as="geometry" />
+        </mxCell>
+        <mxCell id="-oPs62725rQyMZqKjYLc-13" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#B20000;fillColor=#e51400;align=center;verticalAlign=middle;rounded=1;fontSize=18;fontColor=#ffffff;fontStyle=1;roundedPerimeter=1;arcSize=37;rotation=-10;" value="CONTRE" vertex="1">
+          <mxGeometry height="30" width="80" x="322.99703278549225" y="289.99804340186034" as="geometry" />
+        </mxCell>
+        <mxCell id="-oPs62725rQyMZqKjYLc-14" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#B20000;fillColor=#e51400;align=center;verticalAlign=middle;rounded=1;fontSize=15;fontColor=#ffffff;fontStyle=1;roundedPerimeter=1;arcSize=37;rotation=-10;" value="ABSTENTION" vertex="1">
+          <mxGeometry height="30" width="100" x="312.99" y="358" as="geometry" />
+        </mxCell>
+        <mxCell id="-oPs62725rQyMZqKjYLc-15" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#B20000;fillColor=#e51400;align=center;verticalAlign=middle;rounded=1;fontSize=15;fontColor=#ffffff;fontStyle=1;roundedPerimeter=1;arcSize=37;rotation=-10;" value="ABSTENTION" vertex="1">
+          <mxGeometry height="30" width="100" x="312.98511031561435" y="423.00452517852966" as="geometry" />
+        </mxCell>
+        <mxCell id="-oPs62725rQyMZqKjYLc-16" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#B20000;fillColor=#e51400;align=center;verticalAlign=middle;rounded=1;fontSize=15;fontColor=#ffffff;fontStyle=1;roundedPerimeter=1;arcSize=37;rotation=-10;" value="ABSTENTION" vertex="1">
+          <mxGeometry height="30" width="100" x="312.98511031561435" y="478.00452517852966" as="geometry" />
+        </mxCell>
+        <mxCell id="-oPs62725rQyMZqKjYLc-17" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#B20000;fillColor=#e51400;align=center;verticalAlign=middle;rounded=1;fontSize=18;fontColor=#ffffff;fontStyle=1;roundedPerimeter=1;arcSize=37;rotation=-10;" value="CONTRE" vertex="1">
+          <mxGeometry height="30" width="80" x="322.99703278549225" y="537.9980434018603" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
