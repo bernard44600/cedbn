@@ -131,6 +131,7 @@
   <h1>🗂️ Fiches — composition A4</h1>
   <button id="btn-info" class="info" title="À propos de ce document" aria-label="Informations">?</button>
   <div class="actus">
+    <button id="btn-actualiser" title="Forcer le rechargement des fiches (contourne le cache)">↻ Actualiser</button>
     <button id="btn-format">Format: 8/page</button>
     <button id="btn-vider">Vider la planche</button>
     <button id="btn-lien">Lien de la sélection</button>
@@ -183,6 +184,14 @@
   const esc = (s)=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
   // ─────────── format (4 ou 8) ───────────
+  $('#btn-actualiser').onclick = () => {
+    const u = new URL(location.href);
+    u.searchParams.set('maj', Date.now());      // URL neuve → rien n'est servi depuis le cache
+    const sel = CHOIX.filter(Boolean);
+    if (sel.length) u.searchParams.set('f', sel.join(',')); else u.searchParams.delete('f');
+    location.replace(u.href);
+  };
+
   $('#btn-format').onclick = () => {
     if (NB_CASES === 8) {
       NB_CASES = 4;
@@ -215,7 +224,10 @@
                                 {headers: {'Accept': 'application/vnd.github+json'}});
           if (r.ok) {
             const d = await r.json();
-            const noms = d.filter(f => f.name.endsWith('.drawio')).map(f => f.name);
+            const noms = d.filter(f => f.name.endsWith('.drawio')).map(f => {
+              if (f.sha) SHAS[f.name.slice(0, -7)] = String(f.sha).slice(0, 8);
+              return f.name;
+            });
             if (noms.length) return versFiches(noms);
           }
         } catch (e) { }
@@ -253,9 +265,14 @@
     }
   }
 
+  const SHAS = {};                      // slug → sha court du fichier (anti-cache)
+
   async function xmlDe(slug) {
     if (XML_CACHE.has(slug)) return XML_CACHE.get(slug);
-    const r = await fetch(`drawio/${slug}.drawio`, {cache:'force-cache'});
+    // ?v=<sha> : l'URL change dès que le fichier change → aucun cache périmé.
+    // no-cache : revalidation (ETag) quand le sha n'est pas connu.
+    const v = SHAS[slug] ? '?v=' + SHAS[slug] : '';
+    const r = await fetch(`drawio/${slug}.drawio${v}`, {cache:'no-cache'});
     if (!r.ok) throw new Error('HTTP ' + r.status);
     const t = await r.text();
     XML_CACHE.set(slug, t);
