@@ -81,10 +81,13 @@
   #modale .tete button{border:none;background:#eef2f5;border-radius:6px;padding:4px 9px;cursor:pointer}
 
   #modale .corps{display:flex;flex:1;overflow:hidden;padding:0}
-  #modale .liste{width:240px;border-right:1px solid var(--line);background:#fbfcfd;padding:10px;overflow-y:auto;display:flex;flex-direction:column;gap:4px}
-  #modale .liste button{border:1px solid var(--line);background:#fff;border-radius:6px;padding:4px 6px;font-size:.75rem;
-    cursor:pointer;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  #modale .liste button:hover{border-color:var(--accent);color:var(--accent2)}
+  #modale .pied-modale{display:flex;align-items:center;gap:6px;padding:8px 10px;border-top:1px solid var(--line);background:#fbfcfd}
+  #modale .pied-modale button{border:1px solid var(--line);background:#fff;border-radius:6px;width:34px;height:32px;
+    cursor:pointer;font-size:.9rem;line-height:1;flex:none}
+  #modale .pied-modale button:hover{background:#eef2f5}
+  #modale .pied-modale select{flex:1;min-width:0;padding:6px 8px;font-size:.85rem;border:1px solid var(--line);
+    border-radius:6px;background:#fff}
+  #modale .pied-modale .pos{font-size:.72rem;color:var(--muted);white-space:nowrap}
 
   #modale .grand{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;background:#fff;overflow:auto;position:relative}
   #modale .grand svg{max-width:100%;max-height:calc(100% - 50px)}
@@ -162,8 +165,12 @@
   <div class="tete"><strong id="modale-titre">Choisir une fiche</strong>
     <button id="modale-fermer">Fermer</button></div>
   <div class="corps">
-    <div class="liste" id="modale-liste"></div>
     <div class="grand" id="modale-apercu"></div>
+  </div>
+  <div class="pied-modale">
+    <button id="mod-prev" title="Fiche précédente (flèche gauche)">◀</button>
+    <select id="mod-select" title="Choisir une fiche"></select>
+    <button id="mod-next" title="Fiche suivante (flèche droite)">▶</button>
   </div>
 </div></div>
 
@@ -444,18 +451,34 @@
   window.addEventListener('resize', ajusterEchelle);
 
   // ─────────── modale (aperçu / focus) ───────────
+  let indexCourant = 0;   // position dans FICHES (ordre alphabétique)
+
   function remplirListe() {
-    const l = $('#modale-liste');
-    l.innerHTML = '';
-    FICHES.forEach(f => {
-      const b = document.createElement('button');
-      b.textContent = f.nom;
-      b.onclick = () => focusImage(f.slug);
-      l.appendChild(b);
+    const sel = $('#mod-select');
+    sel.innerHTML = '';
+    FICHES.forEach((f, i) => {
+      const o = document.createElement('option');
+      o.value = f.slug;
+      o.textContent = f.nom;
+      sel.appendChild(o);
     });
+    sel.onchange = () => {
+      const i = FICHES.findIndex(f => f.slug === sel.value);
+      if (i >= 0) { indexCourant = i; focusImage(FICHES[i].slug); }
+    };
+  }
+
+  function allerFiche(pas) {
+    if (!FICHES.length) return;
+    indexCourant = (indexCourant + pas + FICHES.length) % FICHES.length;
+    const f = FICHES[indexCourant];
+    $('#mod-select').value = f.slug;
+    focusImage(f.slug);
   }
 
   function focusImage(slug) {
+    const i = FICHES.findIndex(f => f.slug === slug);
+    if (i >= 0) { indexCourant = i; const s = $('#mod-select'); if (s) s.value = slug; }
     const grand = $('#modale-apercu');
     grand.innerHTML = '<span style="color:#9aa5ae;font-size:.85rem">Rendu en cours…</span>';
     enFile(slug, document.createElement('div')).then(svg => {
@@ -469,7 +492,12 @@
       b.textContent = caseCourante !== null ? '➕ Placer dans la case ' + (caseCourante+1) : '➕ Ajouter à la planche';
       b.onclick = () => choisir(slug);
       grand.appendChild(b);
-    }).catch(() => { grand.textContent = 'Impossible de rendre cette fiche.'; });
+    }).catch((err) => {
+      const msg = String(err && err.message || err);
+      grand.innerHTML = '<span style="color:#b45309;font-size:.85rem;text-align:center">' +
+        (msg.includes('404') ? 'Fichier introuvable (renommé ou supprimé ?).' : 'Impossible de rendre cette fiche.') +
+        '<br><small>Cliquez sur <b>↻ Actualiser</b> pour relire la liste des fiches.</small></span>';
+    });
   }
 
   function ouvrirApercu(slug, cible) {
@@ -479,7 +507,8 @@
     remplirListe();
     const grand = $('#modale-apercu');
     if (!slug) {
-      grand.innerHTML = '<span style="color:#9aa5ae;font-size:.85rem">Sélectionnez une fiche dans la liste de gauche.</span>';
+      if (FICHES.length) { $('#mod-select').value = FICHES[0].slug; focusImage(FICHES[0].slug); }
+      else grand.innerHTML = '<span style="color:#9aa5ae;font-size:.85rem">Aucune fiche disponible.</span>';
     } else {
       focusImage(slug);
     }
@@ -519,6 +548,14 @@
   });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') bulle.hidden = true; });
 
+  $('#mod-prev').onclick = () => allerFiche(-1);
+  $('#mod-next').onclick = () => allerFiche(1);
+  document.addEventListener('keydown', (e) => {
+    if (!$('#modale').classList.contains('on')) return;
+    if (e.key === 'ArrowLeft') { e.preventDefault(); allerFiche(-1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); allerFiche(1); }
+  });
+
   $('#btn-nb').onclick = () => {
     document.body.classList.toggle('nb');
     const actif = document.body.classList.contains('nb');
@@ -540,6 +577,8 @@
       return;
     }
     FICHES = await chargerListe();
+    // ordre alphabétique partout (galerie, liste déroulante, flèches)
+    FICHES.sort((a, b) => a.nom.localeCompare(b.nom, 'fr', {numeric: true, sensitivity: 'base'}));
     lireUrl();
     dessinerGalerie();
     dessinerPlanche();
