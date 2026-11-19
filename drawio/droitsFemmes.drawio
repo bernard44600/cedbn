@@ -4,7 +4,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="uoHnVejE6FWyuElAda5D-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#FFFFFF;gradientColor=none;gradientDirection=north;roundedPerimeter=1;shadow=1;glass=0;multiple=0;fontFamily=Tahoma;labelBackgroundColor=none;arcSize=27;" value="&lt;font face=&quot;Helvetica&quot;&gt;&lt;b&gt;EGALITE FEMMES / HOMMES&lt;br&gt;.&lt;font style=&quot;font-size: 15px;&quot;&gt;.&lt;/font&gt;&lt;/b&gt;&lt;/font&gt;" vertex="1">
+        <mxCell id="uoHnVejE6FWyuElAda5D-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#FFF2CC;gradientColor=default;gradientDirection=north;roundedPerimeter=1;shadow=1;glass=0;multiple=0;fontFamily=Tahoma;labelBackgroundColor=none;arcSize=27;" value="&lt;font face=&quot;Helvetica&quot;&gt;&lt;b&gt;EGALITE FEMMES / HOMMES&lt;br&gt;.&lt;font style=&quot;font-size: 15px;&quot;&gt;.&lt;/font&gt;&lt;/b&gt;&lt;/font&gt;" vertex="1">
           <mxGeometry height="56" width="390" x="10" y="4" as="geometry" />
         </mxCell>
         <mxCell id="uoHnVejE6FWyuElAda5D-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;spacingLeft=2;" value="" vertex="1">
@@ -28,7 +28,7 @@
         <mxCell id="uoHnVejE6FWyuElAda5D-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;spacingLeft=2;" value="Augmenter les pénalités des entreprises qui ne respectent pas l&#39;égalité salariale." vertex="1">
           <mxGeometry height="60" width="300" x="20" y="450" as="geometry" />
         </mxCell>
-        <mxCell id="uoHnVejE6FWyuElAda5D-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;spacingLeft=2;" value="Egalité des salaires &lt;br&gt;Homme / Femme" vertex="1">
+        <mxCell id="uoHnVejE6FWyuElAda5D-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;spacingLeft=2;" value="Egalité des salaires &lt;br&gt;Homme / Femme (janv 2020)" vertex="1">
           <mxGeometry height="60" width="300" x="20" y="510" as="geometry" />
         </mxCell>
         <mxCell id="uoHnVejE6FWyuElAda5D-11" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#B20000;fillColor=#e51400;align=center;verticalAlign=middle;rounded=1;fontSize=18;fontColor=#ffffff;fontStyle=1;roundedPerimeter=1;arcSize=37;rotation=-10;" value="CONTRE" vertex="1">
