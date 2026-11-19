@@ -1,10 +1,10 @@
 <mxfile host="Electron">
   <diagram name="Page-1" id="J5p6Mt3v1SuXNy9PViS8">
-    <mxGraphModel dx="695" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="413" pageHeight="583" math="0" shadow="0">
+    <mxGraphModel dx="963" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="413" pageHeight="583" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="-oPs62725rQyMZqKjYLc-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#FFF2CC;gradientColor=default;gradientDirection=north;roundedPerimeter=1;shadow=1;glass=0;multiple=0;fontFamily=Tahoma;labelBackgroundColor=none;arcSize=27;" value="DROIT DES FEMMES&lt;br&gt;kjkljkj" vertex="1">
+        <mxCell id="-oPs62725rQyMZqKjYLc-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#FFF2CC;gradientColor=default;gradientDirection=north;roundedPerimeter=1;shadow=1;glass=0;multiple=0;fontFamily=Helvetica;labelBackgroundColor=none;arcSize=27;fontStyle=1" value="DROIT DES FEMMES&lt;br&gt;&lt;font style=&quot;font-size: 16px; font-weight: normal;&quot;&gt;les poltiques en faveur des femmes sont menacées&lt;/font&gt;" vertex="1">
           <mxGeometry height="56" width="390" x="13" y="17" as="geometry" />
         </mxCell>
         <mxCell id="-oPs62725rQyMZqKjYLc-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;spacingLeft=2;" value="Intégrer le consentement à la définition du viol et agressions sexuelles" vertex="1">
@@ -13,19 +13,19 @@
         <mxCell id="-oPs62725rQyMZqKjYLc-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;spacingLeft=2;" value="Interdire les dépassements d&#39;honoraire pour les consultations de santé sexuelles" vertex="1">
           <mxGeometry height="60" width="300" x="23" y="163" as="geometry" />
         </mxCell>
-        <mxCell id="-oPs62725rQyMZqKjYLc-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;spacingLeft=2;" value="&lt;font&gt;contre les moyens de l&#39;IVG &lt;br&gt;(réduction du budget planning familial)&amp;nbsp;&lt;/font&gt;" vertex="1">
+        <mxCell id="-oPs62725rQyMZqKjYLc-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;spacingLeft=2;" value="&lt;font&gt;Contre les moyens de l&#39;IVG &lt;br&gt;(réduction du budget planning familial)&lt;br&gt;Carpentras (juin 2026)&amp;nbsp;&lt;/font&gt;" vertex="1">
           <mxGeometry height="60" width="300" x="23" y="223" as="geometry" />
         </mxCell>
-        <mxCell id="-oPs62725rQyMZqKjYLc-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;spacingLeft=2;" value="" vertex="1">
+        <mxCell id="-oPs62725rQyMZqKjYLc-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;spacingLeft=2;" value="Allongement du recours de 12 à 14 semaines pour l&#39;IVG (2022)" vertex="1">
           <mxGeometry height="60" width="300" x="23" y="283" as="geometry" />
         </mxCell>
-        <mxCell id="-oPs62725rQyMZqKjYLc-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;spacingLeft=2;" value="&amp;nbsp;prise en charge de la contraception masculine et des préservatises féminins." vertex="1">
+        <mxCell id="-oPs62725rQyMZqKjYLc-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;spacingLeft=2;" value="Prise en charge de la contraception masculine et des préservatises féminins." vertex="1">
           <mxGeometry height="60" width="300" x="23" y="343" as="geometry" />
         </mxCell>
-        <mxCell id="-oPs62725rQyMZqKjYLc-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;spacingLeft=2;" value="&amp;nbsp;Formez des magistrats ou violences intrafamiliales." vertex="1">
+        <mxCell id="-oPs62725rQyMZqKjYLc-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;spacingLeft=2;" value="Former des magistrats ou violences intrafamiliales." vertex="1">
           <mxGeometry height="60" width="300" x="23" y="403" as="geometry" />
         </mxCell>
-        <mxCell id="-oPs62725rQyMZqKjYLc-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;spacingLeft=2;" value="" vertex="1">
+        <mxCell id="-oPs62725rQyMZqKjYLc-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;spacingLeft=2;" value="Résolution pour condamner l&#39;interdiction des IVG en pologne (après un viol ou danger pour la mère) (2020)" vertex="1">
           <mxGeometry height="60" width="300" x="23" y="463" as="geometry" />
         </mxCell>
         <mxCell id="-oPs62725rQyMZqKjYLc-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=16;align=left;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;spacingLeft=2;" value="" vertex="1">
@@ -44,13 +44,13 @@
           <mxGeometry height="30" width="80" x="322.99703278549225" y="289.99804340186034" as="geometry" />
         </mxCell>
         <mxCell id="-oPs62725rQyMZqKjYLc-14" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#B20000;fillColor=#e51400;align=center;verticalAlign=middle;rounded=1;fontSize=15;fontColor=#ffffff;fontStyle=1;roundedPerimeter=1;arcSize=37;rotation=-10;" value="ABSTENTION" vertex="1">
-          <mxGeometry height="30" width="100" x="312.99" y="358" as="geometry" />
+          <mxGeometry height="30" width="100" x="308.99" y="358" as="geometry" />
         </mxCell>
         <mxCell id="-oPs62725rQyMZqKjYLc-15" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#B20000;fillColor=#e51400;align=center;verticalAlign=middle;rounded=1;fontSize=15;fontColor=#ffffff;fontStyle=1;roundedPerimeter=1;arcSize=37;rotation=-10;" value="ABSTENTION" vertex="1">
-          <mxGeometry height="30" width="100" x="312.98511031561435" y="423.00452517852966" as="geometry" />
+          <mxGeometry height="30" width="100" x="308.99511031561434" y="418.00452517852966" as="geometry" />
         </mxCell>
         <mxCell id="-oPs62725rQyMZqKjYLc-16" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#B20000;fillColor=#e51400;align=center;verticalAlign=middle;rounded=1;fontSize=15;fontColor=#ffffff;fontStyle=1;roundedPerimeter=1;arcSize=37;rotation=-10;" value="ABSTENTION" vertex="1">
-          <mxGeometry height="30" width="100" x="312.98511031561435" y="478.00452517852966" as="geometry" />
+          <mxGeometry height="30" width="100" x="308.99511031561434" y="478.00452517852966" as="geometry" />
         </mxCell>
         <mxCell id="-oPs62725rQyMZqKjYLc-17" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#B20000;fillColor=#e51400;align=center;verticalAlign=middle;rounded=1;fontSize=18;fontColor=#ffffff;fontStyle=1;roundedPerimeter=1;arcSize=37;rotation=-10;" value="CONTRE" vertex="1">
           <mxGeometry height="30" width="80" x="322.99703278549225" y="537.9980434018603" as="geometry" />
