@@ -8,7 +8,7 @@
 <style>
   :root{
     --bg:#f4f6f8; --card:#fff; --ink:#1f2933; --muted:#6b7280; --line:#dde3e8;
-    --accent:#2f7d4f; --accent2:#1d5c39; --warn:#b45309;
+    --accent:#2f7d4f; --accent2:#1d5c39; --warn:#b45309; --marge:5mm;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15px}
@@ -45,18 +45,18 @@
   /* ── planche A4 ── */
   .apercu{background:#e7ebef;border:1px solid var(--line);border-radius:8px;padding:8px;overflow:hidden}
   .apercu .cadre{transform-origin:top left}
-  #page{width:297mm;height:210mm;background:#fff;display:grid;grid-template-columns:repeat(4,1fr);
-        grid-template-rows:repeat(2,1fr);box-shadow:0 2px 10px rgba(0,0,0,.12)}
-  #page.format-4{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);}
+  #page{width:297mm;height:210mm;background:#fff;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+        grid-template-rows:repeat(2,minmax(0,1fr));box-shadow:0 2px 10px rgba(0,0,0,.12)}
+  #page.format-4{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));}
   .case{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;
-        border:.1mm solid #e3e7ea;cursor:pointer;background:#fff}
+        padding:var(--marge);border:.1mm solid #e3e7ea;cursor:pointer;background:#fff}
   .case svg{width:100%;height:100%;display:block}
 
   /* Ajout des !important pour écraser les styles en ligne du SVG injecté par JS */
   #page.format-4 .case svg {
     position: absolute !important;
-    width: 70.71% !important;
-    height: 141.42% !important;
+    width: calc(105mm - 2 * var(--marge)) !important;
+    height: calc(148.5mm - 2 * var(--marge)) !important;
     top: 50% !important;
     left: 50% !important;
     transform: translate(-50%, -50%) rotate(-90deg) !important;
@@ -142,6 +142,7 @@
   <div class="actus">
     <button id="btn-actualiser" title="Forcer le rechargement des fiches (contourne le cache)">↻ Actualiser</button>
     <button id="btn-format">Format: 8/page</button>
+    <button id="btn-marge" title="Marge autour de chaque fiche (écran et impression)">Marge: 5 mm</button>
     <button id="btn-vider">Vider la planche</button>
     <button id="btn-lien">Lien de la sélection</button>
     <button id="btn-nb" title="Aperçu en niveaux de gris (comme une imprimante noir et blanc)">N&amp;B</button>
@@ -221,6 +222,15 @@
       while(CHOIX.length < 8) CHOIX.push(null);
     }
     dessinerPlanche(); majEtatGalerie(); majUrl();
+  };
+
+  const MARGES = [5, 8, 10, 0, 3];
+  let idxMarge = 0;
+  $('#btn-marge').onclick = () => {
+    idxMarge = (idxMarge + 1) % MARGES.length;
+    const m = MARGES[idxMarge];
+    document.documentElement.style.setProperty('--marge', m + 'mm');
+    $('#btn-marge').textContent = `Marge: ${m} mm`;
   };
 
   // ─────────── liste des fiches ───────────
