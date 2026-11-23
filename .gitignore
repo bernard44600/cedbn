@@ -1,4 +1,6 @@
 __pycache__/
+corbeille/
+temp/
 *.pyc
 .DS_Store
 # fichiers de travail de l'éditeur drawio (.$xxx.bkp, .$xxx.dtmp)
